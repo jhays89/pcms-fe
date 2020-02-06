@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { EventBus } from '../../event-bus.js';
+import alerts from '@/utils/alerts.js';
 
 export default {
   name: 'HelloWorld',
@@ -18,12 +18,7 @@ export default {
 
   methods: {
     createAppNotificationEvent() {
-      var widget = {
-        name: 'app-notification-user-added',
-        options: {}
-      };
-
-      EventBus.$emit('open-app-notification', widget);
+      alerts.success();
     }
   }
 }
