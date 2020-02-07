@@ -17,7 +17,7 @@ export default {
   },
 
   methods: {
-    createAppNotificationEvent() {
+    async createAppNotificationEvent() {
       alerts.success();
     }
   }
