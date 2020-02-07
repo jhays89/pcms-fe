@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Menu from '../Menu';
+import Menu from '../shared/Menu';
 import { EventBus } from '../../event-bus';
 
 export default {

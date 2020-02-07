@@ -1,6 +1,6 @@
 <template>
-    <div class="navigation" v-bind:class="{ 'collapsed': isCollapsed }">
-        <app-menu :isMobileMenu="false"></app-menu>
+    <div class="navigation" >
+        <app-menu :isCollapsed="isCollapsed" :isMobileMenu="false"></app-menu>
         <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
             <div class="icon-wrapper">
                 <i class="fa fa-chevron-left icon"></i>

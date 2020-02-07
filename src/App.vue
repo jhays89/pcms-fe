@@ -1,22 +1,24 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <div class="main-wrapper">
-      <app-nav></app-nav>
-      <div class="main-content">
-        <transition name="fade">
-            <router-view/>
-        </transition>
+    <v-app>
+      <app-header></app-header>
+      <div class="main-wrapper">
+        <app-nav></app-nav>
+        <div class="main-content">
+          <transition name="fade">
+              <router-view/>
+          </transition>
+        </div>
       </div>
-    </div>
-    <side-widget></side-widget>
-    <app-notification></app-notification>
+      <side-widget></side-widget>
+      <app-notification></app-notification>
+    </v-app>
   </div>
 </template>
 
 <script>
-import Header from './components/Header';
-import Navigation from './components/Navigation';
+import Header from './components/shared/Header';
+import Navigation from './components/shared/Navigation';
 import SideWidget from './components/side-widgets/SideWidget';
 import AppNotification from './components/app-notifications/AppNotification';
 
@@ -32,7 +34,8 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 #app {
@@ -71,6 +74,10 @@ h4 {
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .75s;
+}
+
+.main-wrapper a:hover {
+  text-decoration: none;
 }
 
 .fade-enter, .fade-leave-to {
