@@ -43,7 +43,6 @@ export default {
     justify-content: space-between;
     height: 60px;
     background-color: #444;
-    background-image: url('../../assets/header-bg-transparent.png');
     background-size: 20px;
     color: #fff;
 }
@@ -52,7 +51,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url('../../assets/solid-justin.png');
+    background-image: url('../../assets/client-logo-1.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

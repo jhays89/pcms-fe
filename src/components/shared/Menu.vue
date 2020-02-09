@@ -1,7 +1,16 @@
 <template>
-<v-navigation-drawer v-model="drawer" :mini-variant="isCollapsed" dark :expandOnHover="false" absolute>
+<v-navigation-drawer 
+        class="app-drawer"
+        :value="drawer"
+        width="200px"
+        :mini-variant="isCollapsed"
+        dark :expandOnHover="false"
+        mobile-break-point="768"
+        :hide-overlay="true"
+        :stateless="true"
+    >
     <v-list dense nav class="py-0" >
-        <v-list-item two-line :class="isCollapsed && 'px-0'">
+        <v-list-item two-line class="px-0">
             <v-list-item-avatar>
                 <img src="@/assets/solid-justin.png">
             </v-list-item-avatar>
@@ -14,14 +23,14 @@
         <v-divider></v-divider>
 
         <v-list-item v-for="item in items" :key="item.title" link>
-            <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-                <router-link :to="item.link">
+            <router-link :to="item.link">
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
                     <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
-                </router-link>
-            </v-list-item-content>
+                </v-list-item-content>
+            </router-link>
         </v-list-item>
     </v-list>
 </v-navigation-drawer>
@@ -54,32 +63,15 @@ export default {
 }
 </script>
 
+<style>
+.side-widget .v-navigation-drawer  {
+    width: 100% !important;
+}
+</style>
+
 <style scoped>
-
-.main-item-list .nav-item {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    padding: 10px 15px 10px 8px;
-    color: #fff;
-
-    transition: background-color 250ms ease-in;
-}
-
-.main-item-list .nav-item:hover {
-    text-decoration: none;
-    color: #fff;
-    background-color: #358ecf;
-}
-
-.main-item-list .nav-item .icon {
-    position: relative;
-    left: 5px;
-    top: 0;
-    transition: left 175ms ease-in;
-}
-
-.main-item-list .nav-item:hover .icon {
-    left: 8px;
-}
+.app-drawer.v-navigation-drawer a {
+    display: flex;
+    width: 100%;
+} 
 </style>
