@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    <md-button class="md-raised md-primary" @click="createAppNotificationEvent">App Notification</md-button>
-    <router-link to="/">Home</router-link>
+    <v-btn @click="createAppNotificationEvent">App Notification</v-btn>
   </div>
 </template>
 
