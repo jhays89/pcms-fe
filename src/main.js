@@ -5,12 +5,10 @@ import vuetify from '@/plugins/vuetify';
 import App from './App';
 import { store } from './store/store.js';
 import { router } from './router/';
-import VueMaterial from './plugins/vue-material.vue';
 import { api } from './api'
     
 require('lodash/core');
 
-Vue.use(VueMaterial);
 Vue.prototype.$api = api;
 
 Vue.config.productionTip = false;

@@ -72,6 +72,10 @@ h4 {
   font-size: 16px;
 }
 
+a, a:visited {
+  text-decoration: none;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .75s;
 }
