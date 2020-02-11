@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <v-app>
-      <app-header></app-header>
+      <app-header v-if="!isPublic"></app-header>
       <div class="main-wrapper">
-        <app-nav></app-nav>
+        <app-nav v-if="!isPublic"></app-nav>
         <div class="main-content">
           <transition name="fade">
-              <router-view/>
+            <router-view/>
           </transition>
         </div>
       </div>
-      <side-widget></side-widget>
-      <app-notification></app-notification>
+      <side-widget v-if="!isPublic"></side-widget>
+      <app-notification v-if="!isPublic"></app-notification>
     </v-app>
   </div>
 </template>
@@ -29,6 +29,11 @@ export default {
     'app-header': Header,
     'side-widget': SideWidget,
     'app-notification': AppNotification
+  },
+  computed: {
+    isPublic() {
+      return this.$store.state.isPublic;
+    }
   }
 }
 </script>
@@ -100,5 +105,10 @@ a, a:visited {
   position: relative;
   flex: 1;
   margin-top: 20px;
+}
+
+/* VUETIFY */
+.row.align-stretch .v-card {
+  height: 100%;
 }
 </style>

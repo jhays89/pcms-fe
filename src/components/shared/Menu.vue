@@ -27,7 +27,7 @@
                 <v-list-item-icon>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>
+                    <v-list-item-content>
                     <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
             </router-link>
@@ -47,8 +47,8 @@ export default {
             drawer: true,
             items: [
                 { title: 'Home', icon: 'mdi-image', link: '/' },
-                { title: 'Test', icon: 'mdi-view-dashboard', link: '/Test' },
-                { title: 'About', icon: 'mdi-help-box', link: '/' },
+                { title: 'Login', icon: 'mdi-view-dashboard', link: '/Login' },
+                { title: 'Test', icon: 'mdi-help-box', link: '/Test' },
             ],
         };
     },
