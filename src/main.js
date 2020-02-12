@@ -4,7 +4,7 @@ import Vue from 'vue';
 import vuetify from '@/plugins/vuetify';
 import App from './App';
 import { store } from './store/store.js';
-import { router } from './router/';
+import { router } from './router';
 import { api } from './api'
     
 require('lodash/core');
