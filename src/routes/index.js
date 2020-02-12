@@ -1,4 +1,3 @@
-<script>
 import Home from '@/components/views/Home';
 import Test from '@/components/views/Test';
 import Login from '@/components/views/Login';
@@ -29,4 +28,3 @@ export default [
     }
   }
 ]
-</script>
