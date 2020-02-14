@@ -1,94 +1,96 @@
 <template>
-    <div class="header">
-        <div class="logo-container">
-        </div>
-        <div class="mobile-menu-icon-container" @click="createSideWidgetEvent">
-            <div class="menu-bars-wrapper">
-                <div class="menu-bar"></div>
-                <div class="menu-bar"></div>
-                <div class="menu-bar"></div>
-            </div>
-        </div>
+  <v-app-bar class="header">
+    <div class="logo-container"></div>
+    <div class="mobile-menu-icon-container" @click="createSideWidgetEvent">
+      <div class="menu-bars-wrapper">
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
+      </div>
     </div>
+  </v-app-bar>
 </template>
 
 <script>
 import { EventBus } from '../../event-bus.js';
 
 export default {
-    name: 'app-header',
+  name: 'app-header',
 
-    data() {
-        return {};
-    },
-    
-    methods: {
-        createSideWidgetEvent() {
-            var widget = {
-                name: 'menu-side-widget',
-                options: {}
-            };
-            
-            EventBus.$emit('open-side-widget', widget);
-        }
+  data() {
+    return {};
+  },
+  
+  methods: {
+    createSideWidgetEvent() {
+      var widget = {
+        name: 'menu-side-widget',
+        options: {}
+      };
+      
+      EventBus.$emit('open-side-widget', widget);
     }
+  }
 }
  
 </script>
 
+<style>
+.v-toolbar__content {
+  height: 60px !important;
+  height: 100%;  
+  justify-content: space-between;
+}
+</style>
+
 <style scoped>
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    background-color: #444;
-    background-size: 20px;
-    color: #fff;
+.header.v-app-bar.v-toolbar.v-sheet {
+  height: 60px !important;
+  background-color: #444;
 }
 
 .header .logo-container {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-image: url('../../assets/client-logo-1.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-left: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url('../../assets/client-logo-1.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 15px;
 }
 
 .header .mobile-menu-icon-container {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    width: 35px;
-    height: 35px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  width: 35px;
+  height: 35px;
 }
 
 .header .mobile-menu-icon-container:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header .mobile-menu-icon-container .menu-bar {
-    height: 2px;
-    background-color: #fff;
-    margin-bottom: 6px;
+  height: 2px;
+  background-color: #fff;
+  margin-bottom: 6px;
 
-    transition: transform 250ms ease-out;
+  transition: transform 250ms ease-out;
 }
 
 .header .mobile-menu-icon-container:hover .menu-bar {
-    transform: scaleX(.8);
+  transform: scaleX(.8);
 }
 
 .header .mobile-menu-icon-container .menu-bars-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 @media screen and (min-width: 769px) {
-    .header .mobile-menu-icon-container {
-        display: none;
-    }
+  .header .mobile-menu-icon-container {
+    display: none;
+  }
 }
 </style>
