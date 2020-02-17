@@ -1,6 +1,5 @@
 <template>
-  <!-- Restyle for mobile -->
-  <v-list dense nav class="py-0" >
+  <v-list :class="{ 'is-mobile': isMobileMenu }" dense nav class="py-0">
     <v-list-item two-line class="px-0">
       <v-list-item-avatar>
         <img src="@/assets/solid-justin.png">
@@ -17,7 +16,7 @@
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
           <v-list-item-content>
-          <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </router-link>
     </v-list-item>
@@ -41,6 +40,13 @@ export default {
       };
     },
 
+    computed: {
+      isMobile() {
+        // TODO: Vuex > use a getter. Should eleminate need for prop
+        return false;
+      }
+    },
+
     methods: {
       closeMobileMenu() {
         if(this.isMobileMenu) {
@@ -51,15 +57,17 @@ export default {
 }
 </script>
 
-<style>
-.side-widget .v-navigation-drawer  {
-  width: 100% !important;
-}
-</style>
-
 <style scoped>
-.app-drawer.v-navigation-drawer a {
+.v-list-item a {
   display: flex;
   width: 100%;
-} 
+}
+
+.v-list-item__title {
+  color: #fff;
+}
+
+.is-mobile .v-list-item__title {
+  color: #2c3e50;
+}
 </style>

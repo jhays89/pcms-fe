@@ -34,7 +34,7 @@ export default {
       drawer: true,
       isCollapsed: false,
       isMobile: false,
-      mediaQuery: 768 // TODO: Move this into state and use getter
+      mediaQuery: 768 // TODO: Vuex > Move this into state and use getter
     };
   },
 
@@ -103,6 +103,10 @@ export default {
   width: 30px;
   height: 30px;
   background-color: #27a0f8;
+}
+
+.app-drawer .v-list-item__title {
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
