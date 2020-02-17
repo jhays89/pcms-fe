@@ -4,11 +4,11 @@
       <app-header v-if="!isPublic"></app-header>
       <div class="main-wrapper">
         <app-nav v-if="!isPublic"></app-nav>
-        <div class="main-content">
+        <v-content class="main-content">
           <transition name="fade">
             <router-view/>
           </transition>
-        </div>
+        </v-content>
       </div>
       <side-widget v-if="!isPublic"></side-widget>
       <app-notification v-if="!isPublic"></app-notification>

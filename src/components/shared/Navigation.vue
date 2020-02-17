@@ -1,106 +1,117 @@
 <template>
-    <div class="navigation" v-bind:class="{ 'hide-navigation': isMobile, 'collapsed': isCollapsed }">
-        <app-menu :isCollapsed="isCollapsed" :isMobileMenu="isMobile" ></app-menu>
-        <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
-            <div class="icon-wrapper">
-                <i class="fa fa-chevron-left icon"></i>
-                <i class="fa fa-chevron-left icon"></i>
-            </div>
-        </div>
+  <v-navigation-drawer 
+    class="app-drawer"
+    :value="drawer"
+    width="200px"
+    :mini-variant="isCollapsed"
+    dark :expandOnHover="false"
+    mobile-break-point="768"
+    :hide-overlay="true"
+    :stateless="true"
+  >
+    <app-menu :isMobileMenu="isMobile"></app-menu>
+    <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
+      <div class="icon-wrapper">
+        <i class="fa fa-chevron-left icon"></i>
+        <i class="fa fa-chevron-left icon"></i>
+      </div>
     </div>
+  </v-navigation-drawer>
 </template>
 
 <script>
-    import { debounce } from 'lodash';
-    const Menu = () => import('./Menu');
+import { debounce } from 'lodash';
+const Menu = () => import('./Menu');
 
-    export default {
-        name: 'navigation',
-        components: {
-            'app-menu': Menu
-        },
+export default {
+  name: 'navigation',
+  components: {
+    'app-menu': Menu
+  },
 
-        data() {
-            return {
-                isCollapsed: false,
-                isMobile: false
-            };
-        },
+  data() {
+    return {
+      drawer: true,
+      isCollapsed: false,
+      isMobile: false,
+      mediaQuery: 768 // TODO: Vuex > Move this into state and use getter
+    };
+  },
 
-        methods: {
-            toggleCollapse() {
-                this.isCollapsed = !this.isCollapsed;
-            },
+  methods: {
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
 
-            setMobileStatus() {
-                var windowWidth = window.innerWidth;
-
-                if(windowWidth <= 768) {
-                    this.isCollapsed = true;
-                    this.isMobile = true;
-                }
-                else {
-                    this.isMobile = false;
-                }
-            }
-        },
-
-        created() {
-            this.setMobileStatus();
-            window.onresize = debounce(this.setMobileStatus, 500);
-        }
+    setMobileStatus() {
+      var windowWidth = window.innerWidth;
+      this.isMobile = windowWidth <= this.mediaQuery ? this.isMobile = true : this.isMobile = false;
     }
+  },
+
+  created() {
+    this.setMobileStatus();
+    window.onresize = debounce(this.setMobileStatus, 500);
+  }
+}
 </script>
 
 <style scoped>
-.navigation {
-    position: relative;
-    transition: all 250ms ease-in-out;
+.app-drawer {
+  position: relative;
+  transition: all 250ms ease-in-out;
+  overflow: initial;
 }
 
-.navigation .collapse-bar {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-    right: 0;
-    top: calc(50% - 100px);
-    width: 25px;
-    height: 200px;
+.app-drawer .collapse-bar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  right: 0;
+  top: calc(50% - 100px);
+  width: 25px;
+  height: 200px;
 
-    transition: right 300ms ease-in;
+  transition: right 300ms ease-in;
 }
 
-.navigation .collapse-bar:hover {
-    cursor: e-resize;
+.app-drawer .collapse-bar:hover {
+  cursor: e-resize;
 }
 
-.navigation .collapse-bar .icon {
-    position: relative;
-    left: -2px;
-    font-size: 10px;
-    color: #e0e0e0;
+.app-drawer .collapse-bar .icon {
+  position: relative;
+  left: -2px;
+  font-size: 10px;
+  color: #e0e0e0;
 
-    transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in;
 }
 
-.navigation.collapsed .collapse-bar .icon {
-    transform: rotate(180deg);
+.app-drawer.collapsed .collapse-bar .icon {
+  transform: rotate(180deg);
 }
 
-.navigation .collapse-bar .icon-wrapper {
-    display: flex;
-    position: relative;
-    left: 7px;
-    align-content: center;
-    border-radius: 50%;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
-    background-color: #27a0f8;
+.app-drawer .collapse-bar .icon-wrapper {
+  display: flex;
+  position: relative;
+  left: 7px;
+  align-content: center;
+  border-radius: 50%;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #27a0f8;
 }
 
-.navigation.hide-navigation {
-    display: none;
+.app-drawer .v-list-item__title {
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .app-drawer {
+    transform: translate(-120%) !important;
+  }
 }
 </style>
