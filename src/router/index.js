@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Routes from '@/routes/index.js';
 import { store } from '@/store/store';
+import Routes from '@/routes/index.js';
 
 Vue.use(Router);
 
@@ -11,15 +11,11 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  store.state.isPublic = to.meta.isPublic; // Create an action and mutator
+  store.commit('setIsPublic', to.meta.isPublic);
   next();
 });
 
 export { router }
-
-// router.beforeEach((to, from, next) => {
-//   return null;
-// });
 
 // router.afterEach((to, from, next) => {
 //   return null;

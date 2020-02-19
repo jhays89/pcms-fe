@@ -5,11 +5,11 @@
     width="200px"
     :mini-variant="isCollapsed"
     dark :expandOnHover="false"
-    mobile-break-point="768"
+    :mobile-break-point="tablet"
     :hide-overlay="true"
     :stateless="true"
   >
-    <app-menu :isMobileMenu="isMobile"></app-menu>
+    <app-menu />
     <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
       <div class="icon-wrapper">
         <i class="fa fa-chevron-left icon"></i>
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { debounce } from 'lodash';
 const Menu = () => import('./Menu');
 
 export default {
@@ -32,26 +31,23 @@ export default {
   data() {
     return {
       drawer: true,
-      isCollapsed: false,
-      isMobile: false,
-      mediaQuery: 768 // TODO: Vuex > Move this into state and use getter
+      isCollapsed: false
     };
+  },
+
+  computed: {
+    tablet() {
+      return this.$store.getters.tablet;
+    },
+    isMobile() {
+      return this.$store.getters.isMobile;
+    }
   },
 
   methods: {
     toggleCollapse() {
       this.isCollapsed = !this.isCollapsed;
-    },
-
-    setMobileStatus() {
-      var windowWidth = window.innerWidth;
-      this.isMobile = windowWidth <= this.mediaQuery ? this.isMobile = true : this.isMobile = false;
     }
-  },
-
-  created() {
-    this.setMobileStatus();
-    window.onresize = debounce(this.setMobileStatus, 500);
   }
 }
 </script>
