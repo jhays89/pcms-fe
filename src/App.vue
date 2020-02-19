@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'is-mobile': isMobile}">
     <v-app>
       <app-header v-if="!isPublic"></app-header>
       <div class="main-wrapper">
@@ -33,7 +33,13 @@ export default {
   computed: {
     isPublic() {
       return this.$store.getters.isPublic;
+    },
+    isMobile() {
+      return this.$store.getters.isMobile;
     }
+  },
+  created() {
+    this.$store.dispatch('setup');
   }
 }
 </script>
@@ -103,8 +109,12 @@ a, a:visited {
 
 .main-content {
   position: relative;
-  flex: 1;
-  margin-top: 20px;
+  padding-top: 20px !important;
+}
+
+/* MOBILE */
+.is-mobile .v-content {
+  flex: inherit;
 }
 
 /* VUETIFY */
