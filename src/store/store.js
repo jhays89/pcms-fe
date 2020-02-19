@@ -13,6 +13,7 @@ const store = new Vuex.Store({
 
   actions: {
     setup({ commit }) {
+      commit('setMobileMedia');
       commit('setTabletListener');
     }
   },
@@ -24,9 +25,13 @@ const store = new Vuex.Store({
     setIsMobile(state, isMobile) {
       state.isMobile = isMobile;
     },
+    setMobileMedia(state) {
+      const windowWidth = window.innerWidth;
+      state.isMobile = windowWidth <= state.tablet;
+    },
     setTabletListener(state) {
       window.onresize = debounce(() => {
-        var windowWidth = window.innerWidth;
+        const windowWidth = window.innerWidth;
         state.isMobile = windowWidth <= state.tablet;
       }, 500);
     }
