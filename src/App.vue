@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isPublic() {
-      return this.$store.state.isPublic;
+      return this.$store.getters.isPublic;
     }
   }
 }

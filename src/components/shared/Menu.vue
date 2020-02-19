@@ -1,5 +1,5 @@
 <template>
-  <v-list :class="{ 'is-mobile': isMobileMenu }" dense nav class="py-0">
+  <v-list :class="{ 'is-mobile': isMobile }" dense nav class="py-0">
     <v-list-item two-line class="px-0">
       <v-list-item-avatar>
         <img src="@/assets/solid-justin.png">
@@ -27,7 +27,7 @@
 import { EventBus } from '../../event-bus.js';
 
 export default {
-    props: ['isMobileMenu', 'isCollapsed'],
+    props: ['isCollapsed'],
 
     data() {
       return {
@@ -42,14 +42,13 @@ export default {
 
     computed: {
       isMobile() {
-        // TODO: Vuex > use a getter. Should eleminate need for prop
-        return false;
+        return this.$store.getters.isMobile;
       }
     },
 
     methods: {
       closeMobileMenu() {
-        if(this.isMobileMenu) {
+        if(this.isMobile) {
           EventBus.$emit('close-widget');
         }
       }
