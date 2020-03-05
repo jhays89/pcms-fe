@@ -9,7 +9,7 @@ import { api } from './api'
     
 require('lodash/core');
 
-Vue.prototype.$api = api;
+Vue.prototype.$http = api;
 
 Vue.config.productionTip = false;
 
