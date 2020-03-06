@@ -39,17 +39,12 @@ export default {
         this.isLoading = true;
 
         try {
-          //const response = await this.$http.POST('api/AppUsers/Register', this.getPayload());
-          this.$http.POST('api/AppUsers/Register', this.getPayload())
-          .then(response => {
-            console.log(response);
-            alerts.success();
-          })
-          .catch(response => {
-            alerts.error({ text: response });
-          });
+          const response = await this.$http.POST('api/AppUsers/Register', this.getPayload());
+          console.log(response);
+          alerts.success();
         }
-        catch (error) {
+        catch (error){
+          alerts.error({ text: error.request.responseText });
         }
         finally {
           this.isLoading = false;
