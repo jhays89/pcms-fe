@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 import alerts from '@/utils/alerts';
 
 export default {
@@ -21,7 +22,7 @@ export default {
         // eslint-disable-next-line
         email: value => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) || 'E-mail must be valid',
         // eslint-disable-next-line
-        password: value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,30}$/g.test(value) ||
+        password: value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,60}$/g.test(value) ||
           'Must have at least one of each of the folowing: lowercase letter, uppercase letter, number and symbol. Must be between 6-30 characters'
       },
       firstName: '',
@@ -33,11 +34,31 @@ export default {
   },
 
   methods: {
-    register() {
+    async register() {
       if(this.isValid) {
         this.isLoading = true;
-        alerts.success();
+
+        try {
+          const response = await this.$http.POST('api/AppUsers/Register', this.getPayload());
+          console.log(response);
+          alerts.success();
+        }
+        catch (error){
+          alerts.error({ text: error.request.responseText });
+        }
+        finally {
+          this.isLoading = false;
+        }
       }
+    },
+
+    getPayload() {
+      return {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password
+      };
     }
   },
 
@@ -46,7 +67,7 @@ export default {
       // eslint-disable-next-line
       const isEmailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email);
       // eslint-disable-next-line
-      const isPasswordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,30}$/g.test(this.password);
+      const isPasswordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,60}$/g.test(this.password);
 
       return isEmailValid && isPasswordValid; 
     }

@@ -1,29 +1,29 @@
 import axios from 'axios';
 
-var apiBaseUrl = process.env.API_BASE_URL;
+const apiBaseUrl = process.env.API_BASE_URL;
 
 export const api = {
-	ajax: function(config) {
+	AJAX: function(config) {
 		config.url = apiBaseUrl + config.url;
 		return axios(config);
 	},
 
-	get: function(url) {
+	GET: function(url) {
 		return axios
 			.get(apiBaseUrl + url);
 	},
 
-	put: function(url, request) {
+	PUT: function(url, request) {
 		return axios
 			.put(apiBaseUrl + url, request);
 	},
 
-	post: function(url, request) {
+	POST: function(url, request) {
 		return axios
 			.post(apiBaseUrl + url, request);
 	},
 
-	patch: function(url, changes) {
+	PATCH: function(url, changes) {
 		var request = [];
 
 		for (var i = 0; i < changes.length; i++) {
@@ -44,17 +44,17 @@ export const api = {
 		});
     },
 	
-	delete: function(url, request) {  
-        if (request) {
-            return axios({
-                method: 'delete',
-                url: apiBaseUrl + url,
-                data: request
-            });
-        }
-        else {
-		    return axios
-                .delete(apiBaseUrl + url);
-        }
+	DELETE: function(url, request) {  
+    if (request) {
+      return axios({
+        method: 'delete',
+        url: apiBaseUrl + url,
+        data: request
+      });
+    }
+    else {
+    return axios
+      .delete(apiBaseUrl + url);
+    }
 	}
 };
