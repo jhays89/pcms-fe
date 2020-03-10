@@ -40,10 +40,11 @@ export default {
 
         try {
           const response = await this.$http.POST('api/AppUsers/Register', this.getPayload());
-          console.log(response);
+          // dispatch / commit response
+          
           alerts.success();
         }
-        catch (error){
+        catch (error) {
           alerts.error({ text: error.request.responseText });
         }
         finally {
