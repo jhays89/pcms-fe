@@ -1,25 +1,27 @@
 import axios from 'axios';
 
 const apiBaseUrl = process.env.API_BASE_URL;
+const requestInterceptor = (request) => { 
+  request.withCredentials = true;
+  return request;
+};
+
+const instance = axios.create();
+instance.interceptors.request.use(request => requestInterceptor(request));
 
 export const api = {
-	AJAX: function(config) {
-		config.url = apiBaseUrl + config.url;
-		return axios(config);
-	},
-
 	GET: function(url) {
-		return axios
+    return instance
 			.get(apiBaseUrl + url);
 	},
 
 	PUT: function(url, request) {
-		return axios
+    return instance
 			.put(apiBaseUrl + url, request);
 	},
 
 	POST: function(url, request) {
-		return axios
+    return instance
 			.post(apiBaseUrl + url, request);
 	},
 
@@ -34,27 +36,22 @@ export const api = {
 			});
 		}
 
-		return axios({
+		const patchInstance = axios.create({
 			method: 'patch',
 			url: apiBaseUrl + url,
 			headers: {
 				'Content-Type': 'application/json-patch+json',
 			},
-			data: JSON.stringify(request)
-		});
-    },
+      data: JSON.stringify(request),
+    });
+    
+    patchInstance.interceptors.request.use(request => requestInterceptor(request));
+
+    return patchInstance;
+  },
 	
 	DELETE: function(url, request) {  
-    if (request) {
-      return axios({
-        method: 'delete',
-        url: apiBaseUrl + url,
-        data: request
-      });
-    }
-    else {
-    return axios
-      .delete(apiBaseUrl + url);
-    }
+    return instance
+      .delete(apiBaseUrl + url, request);
 	}
 };

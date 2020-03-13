@@ -24,11 +24,28 @@ export default {
   },
 
   methods: {
-    signin() {
-      if(this.isValid) {
+    async signin() {
+      if(!this.isValid) { alerts.error('Please make sure all fields are completed'); }
+
+      try {
         this.isLoading = true;
+  
+        const response = await this.$http.POST('api/AppUsers/SignIn', this.getPayload());
+        this.isLoading = false;
         alerts.success();
+
       }
+      catch (error) {
+        this.isLoading = false;
+        alerts.error({ text: error.request.responseText });
+      }
+    },
+
+    getPayload() {
+      return {
+        email: this.email,
+        password: this.password
+      };
     }
   },
 

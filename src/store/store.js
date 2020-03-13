@@ -6,6 +6,15 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    user: {
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      jwt: '', // Will also need to be store inside httpOnly cookie
+
+    },
+    account: {},
     isPublic: true,
     isMobile: false,
     tablet: 768
@@ -15,7 +24,8 @@ const store = new Vuex.Store({
     setup({ commit }) {
       commit('setMobileMedia');
       commit('setTabletListener');
-    }
+    },
+
   },
 
   mutations: {
