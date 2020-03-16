@@ -7,14 +7,27 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     user: {
+      id: '',
+      createdAt: '',
+      updatedAt: '',
       firstName: '',
       lastName: '',
       fullName: '',
       email: '',
-      jwt: '', // Will also need to be store inside httpOnly cookie
-
+      ProfileImageUrl: '',
+      appUserRoleId: '',
+      userTypes: [],
     },
-    account: {},
+    account: {
+      id: null,
+      createdAt: '',
+      updatedAt: '',
+      name: '',
+      logoImageUrl: '',
+      isActive: false,
+      cardType: '',
+      stripeCardLastFour: null
+    },
     isPublic: true,
     isMobile: false,
     tablet: 768
@@ -25,7 +38,10 @@ const store = new Vuex.Store({
       commit('setMobileMedia');
       commit('setTabletListener');
     },
-
+    signIn({ commit }, request) {
+      commit('setUser', request.appUserDTO);
+      commit('setAccount', request.accountDTO);
+    }
   },
 
   mutations: {
@@ -44,6 +60,12 @@ const store = new Vuex.Store({
         const windowWidth = window.innerWidth;
         state.isMobile = windowWidth <= state.tablet;
       }, 500);
+    },
+    setUser(state, changes) {
+      state.user = { ...changes };
+    },
+    setAccount(state, changes) {
+      state.account = { ...changes };
     }
   },
 

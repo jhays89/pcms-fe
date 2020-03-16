@@ -31,13 +31,17 @@ export default {
         this.isLoading = true;
   
         const response = await this.$http.POST('api/AppUsers/SignIn', this.getPayload());
+        this.$store.dispatch('signIn', response.data);
+        
         this.isLoading = false;
         alerts.success();
 
       }
       catch (error) {
         this.isLoading = false;
-        alerts.error({ text: error.request.responseText });
+        const text = error && error.request ? error.request.responseText : 'An error occured while trying to sign you in. Please try again or contact support.'
+
+        alerts.error({ text: text });
       }
     },
 
