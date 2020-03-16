@@ -46,7 +46,7 @@ export default {
         }
         catch (error) {
           this.isLoading = false;
-          const text = error && error.request ? error.request.responseText : 'An error occured while trying to sign you in. Please try again or contact support.'
+          const text = error && error.request ? error.request.responseText : 'An error occured while trying to register your account. Please try again or contact support.'
 
           alerts.error({ text: text });
         }
