@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import alerts from '@/utils/alerts';
 export default {
   name: 'Profile',
   data() {
@@ -28,8 +29,8 @@ export default {
     async save() {
       try {
         this.loading = true;
-        
-        const response = await this.$http.PATCH(`api/AppUsers(${this.profile.data.id})`, this.getPayload());
+        const response = await this.$http.PATCH(`api/AppUsers('${this.profile.data.id}')`, this.getPayload());
+        console.log(response);
         this.$store.dispatch('saveProfile');
       }
       catch (error) {

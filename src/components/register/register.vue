@@ -41,17 +41,15 @@ export default {
         try {
           const response = await this.$http.POST('api/AppUsers/Register', this.getPayload());
           this.$store.dispatch('signIn', response.data);
-          
-          alerts.success();
+          this.isLoading = true;
+
+          this.$router.push('/Settings');
         }
         catch (error) {
           this.isLoading = false;
           const text = error && error.request ? error.request.responseText : 'An error occured while trying to register your account. Please try again or contact support.'
 
           alerts.error({ text: text });
-        }
-        finally {
-          this.isLoading = false;
         }
       }
     },

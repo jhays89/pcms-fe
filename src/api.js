@@ -37,17 +37,14 @@ export const api = {
 		}
 
 		const patchInstance = axios.create({
-			method: 'patch',
-			url: apiBaseUrl + url,
 			headers: {
 				'Content-Type': 'application/json-patch+json',
 			},
-      data: JSON.stringify(request),
     });
     
     patchInstance.interceptors.request.use(request => requestInterceptor(request));
 
-    return patchInstance;
+    return patchInstance.patch(apiBaseUrl + url, JSON.stringify(request));
   },
 	
 	DELETE: function(url, request) {  

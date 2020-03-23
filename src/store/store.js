@@ -102,6 +102,12 @@ const store = new Vuex.Store({
     tablet(state) {
       return state.tablet;
     },
+    account(state) {
+      return state.account;
+    },
+    user(state) {
+      return state.user;
+    },
     profile(state) {
       return state.profile;
     }
