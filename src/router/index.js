@@ -2,32 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { store } from '@/store/store';
 import Routes from '@/routes/index.js';
-// TODO move helper functions into a routes util file
+import routeHelpers from './helpers.js'
 
 Vue.use(Router);
-
-const isSignedIn = function () {
-  const user = store.getters.user;
-  const account = store.getters.account;
-
-  return !!user.id && !!account.id;
-}
-
-const cachedSignIn = async function () {
-  try {
-    const response = await store.$http.POST('api/AppUsers/CachedSignIn');
-    store.dispatch('signIn', response.data);
-  }
-  catch (error) {
-    alerts.error({ text: 'An error occured ' });
-  }
-};
-
-const checkLoginStatus = function() {
-  if(!isSignedIn()) { 
-    cachedSignIn();
-  }
-};
 
 const router = new Router({
   mode: 'history',
@@ -35,12 +12,37 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  checkLoginStatus();
-  // TODO check active status
-  if(!isLoggedIn()) { next({ name: 'Login'}); }
-
-  store.commit('setIsPublic', to.meta.isPublic);
-  next();
+  if(to.path.toUpperCase() === '/login'.toUpperCase()) {
+    store.commit('setIsPublic', to.meta.isPublic);
+    next();
+  }
+  else {
+    routeHelpers.checkSignInStatus()
+    .then(() => {
+      if (!routeHelpers.isActive() && routeHelpers.isSignedIn() && to.path.toUpperCase() === '/settings'.toUpperCase()) {
+        store.commit('setIsPublic', to.meta.isPublic);
+        next();
+      }
+      else {
+        if(!routeHelpers.isSignedIn()) {
+          store.commit('setIsPublic', to.meta.isPublic);
+          next({ path: '/login' });
+        }
+        else if(!routeHelpers.isActive()) {
+          store.commit('setIsPublic', to.meta.isPublic);
+          next({ path: '/settings' });
+        }
+        else {
+          store.commit('setIsPublic', to.meta.isPublic);
+          next();
+        }
+      }
+    })
+    .catch((error) => {
+      store.commit('setIsPublic', true);
+      next({ path: '/login' });
+    });
+  }
 });
 
 export { router }
