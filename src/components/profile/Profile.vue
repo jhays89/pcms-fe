@@ -29,8 +29,8 @@ export default {
     async save() {
       try {
         this.loading = true;
-        const response = await this.$http.PATCH(`api/AppUsers('${this.profile.data.id}')`, this.getPayload());
-        console.log(response);
+        await this.$http.PATCH(`api/AppUsers?id=${this.profile.data.id}`, this.getPayload());
+
         this.$store.dispatch('saveProfile');
       }
       catch (error) {
@@ -45,15 +45,15 @@ export default {
     getPayload() {
       return [
         {
-          name: 'firstName',
+          name: 'FirstName',
           value: this.profile.data.firstName
         },
         {
-          name: 'lastName',
+          name: 'LastName',
           value: this.profile.data.lastName
         },
         {
-          name: 'email',
+          name: 'Email',
           value: this.profile.data.email
         }
       ];

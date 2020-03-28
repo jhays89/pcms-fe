@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
         }
       }
     })
-    .catch((error) => {
+    .catch(() => {
       store.commit('setIsPublic', true);
       next({ path: '/login' });
     });
