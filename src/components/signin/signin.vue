@@ -27,7 +27,7 @@ export default {
     async signin() {
       if(!this.isValid) { alerts.error('Please make sure all fields are completed'); }
 
-      try { // START HERE: Add redirect to register and sign in. Then go to Backend and set up proper cookie and JWT.
+      try {
         this.isLoading = true;
   
         const response = await this.$http.POST('api/AppUsers/SignIn', this.getPayload());
