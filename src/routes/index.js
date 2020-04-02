@@ -1,6 +1,7 @@
 import Home from '@/components/views/Home';
 import Test from '@/components/views/Test';
 import Login from '@/components/views/Login';
+import Settings from '@/components/views/Settings';
 
 export default [
   {
@@ -25,6 +26,14 @@ export default [
     component: Login,
     meta: {
       isPublic: true
+    }
+  },
+  {
+    path: '/Settings',
+    name: 'Settings',
+    component: Settings,
+    meta: {
+      isPublic: false
     }
   }
 ]

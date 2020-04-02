@@ -10,13 +10,6 @@ export default {
   data () {
     return {
     }
-  },
-
-  created() {
-    // this.$api.get('api/values')
-    //   .then(response => {
-    //     alert(response.data);
-    //   });
   }
 }
 </script>

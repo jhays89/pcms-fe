@@ -32,10 +32,9 @@ export default {
   
         const response = await this.$http.POST('api/AppUsers/SignIn', this.getPayload());
         this.$store.dispatch('signIn', response.data);
-        
         this.isLoading = false;
-        alerts.success();
 
+        this.$router.push('/Settings');
       }
       catch (error) {
         this.isLoading = false;

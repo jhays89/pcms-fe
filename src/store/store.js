@@ -1,6 +1,7 @@
-import { debounce } from 'lodash';
+import { debounce, cloneDeep, isEqual } from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import format from '@/utils/format';
 
 Vue.use(Vuex);
 
@@ -17,6 +18,10 @@ const store = new Vuex.Store({
       ProfileImageUrl: '',
       appUserRoleId: '',
       userTypes: [],
+    },
+    profile: {
+      data: {},
+      hasChanges: false,
     },
     account: {
       id: null,
@@ -41,6 +46,10 @@ const store = new Vuex.Store({
     signIn({ commit }, request) {
       commit('setUser', request.appUserDTO);
       commit('setAccount', request.accountDTO);
+    },
+    saveProfile({ state, commit }) {
+      commit('setUser', state.profile.data);
+      commit('setProfile'); 
     }
   },
 
@@ -63,9 +72,23 @@ const store = new Vuex.Store({
     },
     setUser(state, changes) {
       state.user = { ...changes };
+      state.user.fullName = format.fullName(state.user.firstName, state.user.lastName);
     },
     setAccount(state, changes) {
       state.account = { ...changes };
+    },
+    setProfile(state) {
+      state.profile.data = cloneDeep(state.user);
+      state.profile.hasChanges = isEqual(state.profile.data, state.user);
+    },
+    updateProfile(state, changes) {
+      Object.keys(state.profile.data).forEach(key => {
+        if(key === changes.key) {
+          state.profile.data[key] = changes.value;
+        }
+      });
+
+      state.profile.hasChanges = isEqual(state.profile.data, state.user);
     }
   },
 
@@ -78,6 +101,15 @@ const store = new Vuex.Store({
     },
     tablet(state) {
       return state.tablet;
+    },
+    account(state) {
+      return state.account;
+    },
+    user(state) {
+      return state.user;
+    },
+    profile(state) {
+      return state.profile;
     }
   }
 });
