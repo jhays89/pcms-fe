@@ -83,7 +83,7 @@ export default {
   display: flex;
   align-items: center;
   z-index: 1;
-  top: 300px;
+  top: 500px;
   width: 25px;
   height: 200px;
   margin-left: auto;
