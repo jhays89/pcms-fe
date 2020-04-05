@@ -1,12 +1,12 @@
 <template>
-  <div id="app" :class="{'is-mobile': isMobile}">
+  <div id="app" :class="['wd-app', {'is-mobile': isMobile}]">
     <v-app>
-      <app-header v-if="!isPublic"></app-header>
       <div class="main-wrapper">
         <app-nav v-if="!isPublic"></app-nav>
         <v-content class="main-content">
+          <app-header v-if="!isPublic"></app-header>
           <transition name="fade">
-            <router-view/>
+            <router-view />
           </transition>
         </v-content>
       </div>
@@ -55,6 +55,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #f8f8f8;
 }
 
 body {
@@ -105,20 +106,73 @@ a, a:visited {
   display: flex;
   height: calc(100vh - 60px);
   width: 100%;
+  height: 100%;
 }
 
 .main-content {
   position: relative;
-  padding-top: 20px !important;
+  padding-top: 0 !important;
+  flex: 1 1 auto;
+  padding: 20px !important;
+  width: 100%;
 }
 
 /* MOBILE */
 .is-mobile .v-content {
   flex: inherit;
+  width: 100%;
 }
 
 /* VUETIFY */
+.wd-app .v-application {
+  background-color: #f8f8f8;
+}
 .row.align-stretch .v-card {
   height: 100%;
 }
+
+/* primary */
+.wd-app .v-application .primary {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.wd-app .v-application .primary--text {
+  color: #000 !important;
+}
+
+/* accent */
+.wd-app .accent {
+  background-color: #7367F0 !important;
+  border-color: #7367F0 !important;
+}
+
+/* anchor */
+.wd-app .v-application .anchor {
+  color: #000 !important;
+}
+
+/* v-btn */
+.wd-app .v-application .v-btn {
+  background-color: #7367F0 !important;
+  color: #fff !important;
+}
+
+/* v-list */
+.wd-app .v-application .v-list-item__title {
+  color: #000 !important;
+}
+
+.wd-app .v-application .router-link-exact-active .v-list-item__title,
+.wd-app .v-application .router-link-exact-active .v-list-item__icon .v-icon {
+  color: #7367F0 !important;
+}
+
+  /* secondary: '#424242',
+  accent: '#82B1FF',
+  error: '#FF5252',
+  info: '#2196F3',
+  success: '#4CAF50',
+  warning: '#FFC107', 
+  anchor: #000*/
 </style>

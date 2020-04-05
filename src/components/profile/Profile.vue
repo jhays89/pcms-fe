@@ -1,11 +1,11 @@
 <template>
-  <v-container>
+  <div>
     <h2>Profile</h2>
     <v-text-field @input="updateProfile('firstName', $event)" :value="profile.data.firstName" label="First name" type="text" />
     <v-text-field @input="updateProfile('lastName', $event)" :value="profile.data.lastName" label="Last name" type="text" />
     <v-text-field @input="updateProfile('email', $event)" :value="profile.data.email" label="Email" type="email" />
     <v-btn @click="save" :disabled="loading || profile.hasChanges" :loading="loading">Save Profile</v-btn>
-  </v-container>
+  </div>
 </template>
 
 <script>

@@ -55,9 +55,15 @@ export default {
 </style>
 
 <style scoped>
+.header {
+  position: sticky;
+  top: 20px;
+  margin-bottom: 20px;
+}
+
 .header.v-app-bar.v-toolbar.v-sheet {
   height: 60px !important;
-  background-color: #444;
+  background-color: #fff;
 }
 
 .header .logo-container {
