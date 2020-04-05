@@ -1,17 +1,17 @@
 <template>
-  <v-navigation-drawer 
-    class="app-drawer"
+  <v-navigation-drawer
+    class="app-drawer primary"
     :value="drawer"
-    width="200px"
     :mini-variant="isCollapsed"
-    dark :expandOnHover="false"
+    width="200px"
+    :expandOnHover="false"
     :mobile-break-point="tablet"
     :hide-overlay="true"
     :stateless="true"
   >
     <app-menu />
     <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
-      <div class="icon-wrapper">
+      <div class="icon-wrapper accent">
         <i class="fa fa-chevron-left icon"></i>
         <i class="fa fa-chevron-left icon"></i>
       </div>
@@ -52,23 +52,41 @@ export default {
 }
 </script>
 
+<style>
+.app-drawer .v-navigation-drawer__content {
+  overflow-x: initial;
+  overflow-y: initial;
+}
+
+</style>
+
 <style scoped>
 .app-drawer {
   position: relative;
+  z-index: 10;
   transition: all 250ms ease-in-out;
   overflow: initial;
+  box-shadow: 5px 0px 3px 0px rgba(0,0,0,0.24);
+}
+
+.app-drawer .v-list {
+  position: sticky;
+  top: 24px;
+}
+
+.is-mobile .app-drawer {
+  display: none;
 }
 
 .app-drawer .collapse-bar {
-  position: absolute;
+  position: sticky;
   display: flex;
   align-items: center;
   z-index: 1;
-  right: 0;
-  top: calc(50% - 100px);
+  top: 300px;
   width: 25px;
   height: 200px;
-
+  margin-left: auto;
   transition: right 300ms ease-in;
 }
 
@@ -85,8 +103,8 @@ export default {
   transition: transform 250ms ease-in;
 }
 
-.app-drawer.collapsed .collapse-bar .icon {
-  transform: rotate(180deg);
+.app-drawer.v-navigation-drawer--mini-variant .collapse-bar .icon {
+  transform: rotateY(180deg);
 }
 
 .app-drawer .collapse-bar .icon-wrapper {

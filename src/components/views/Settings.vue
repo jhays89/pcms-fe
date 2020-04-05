@@ -3,7 +3,7 @@
     <h1>Settings</h1>
     <v-row class="align-stretch">
       <v-col cols="12" sm="12">
-        <v-card>
+        <v-card class="pa-4">
           <Profile />
         </v-card>
       </v-col>
