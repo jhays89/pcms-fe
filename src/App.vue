@@ -127,6 +127,12 @@ a, a:visited {
 .wd-app .v-application {
   background-color: #f8f8f8;
 }
+
+/* card */
+.wd-app .v-content .v-card {
+  border-radius: 7px;
+  box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
+}
 .row.align-stretch .v-card {
   height: 100%;
 }
@@ -167,12 +173,4 @@ a, a:visited {
 .wd-app .v-application .router-link-exact-active .v-list-item__icon .v-icon {
   color: #7367F0 !important;
 }
-
-  /* secondary: '#424242',
-  accent: '#82B1FF',
-  error: '#FF5252',
-  info: '#2196F3',
-  success: '#4CAF50',
-  warning: '#FFC107', 
-  anchor: #000*/
 </style>

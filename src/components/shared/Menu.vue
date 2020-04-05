@@ -1,22 +1,19 @@
 <template>
-  <v-list :class="{ 'is-mobile': isMobile }" dense nav class="py-0">
+  <v-list :class="{ 'is-mobile': isMobile }" dense nav class="mt-6 py-0">
     <v-list-item two-line class="px-0">
-      <v-list-item-avatar>
-        <img src="@/assets/solid-justin.png">
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Application</v-list-item-title>
-        <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+      <v-list-item-content class="pa-0">
+        <router-link to="/">
+          <v-img width="184" height="40" :contain="true" src="https://dozacreative.com//wp-content/uploads/2020/01/logo-1.png"></v-img>
+        </router-link>
       </v-list-item-content>
     </v-list-item>
-    <v-divider></v-divider>
-    <v-list-item v-for="item in items" :key="item.title" link>
+    <v-list-item v-for="item in items" :key="item.title" link @click="shouldCloseMenu">
       <router-link :to="item.link">
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
           <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title class="text-left">{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </router-link>
     </v-list-item>
@@ -33,9 +30,14 @@ export default {
       return {
         drawer: true,
         items: [
-          { title: 'Home', icon: 'mdi-image', link: '/' },
-          { title: 'Login', icon: 'mdi-view-dashboard', link: '/Login' },
-          { title: 'Test', icon: 'mdi-help-box', link: '/Test' },
+          { title: 'Dashboard', icon: 'mdi-speedometer', link: '/' },
+          { title: 'Tasks', icon: 'mdi-clipboard-check-outline', link: '/Test' },
+          { title: 'Clients', icon: 'mdi-account-group-outline', link: '/Test' },
+          { title: 'Campaigns', icon: 'mdi-desktop-mac-dashboard', link: '/Test' },
+          { title: 'Templates', icon: 'mdi-newspaper', link: '/Test' },
+          { title: 'Workflows', icon: 'mdi-graph-outline', link: '/Test' },
+          { title: 'Login', icon: 'mdi-login-variant', link: '/Login' },
+          { title: 'Test', icon: 'mdi-bomb', link: '/Test' },
         ],
       };
     },
@@ -51,6 +53,11 @@ export default {
         if(this.isMobile) {
           EventBus.$emit('close-widget');
         }
+      },
+      shouldCloseMenu() {
+        if(this.isMobile) {
+          this.closeMobileMenu();
+        }
       }
     }
 }
@@ -64,6 +71,10 @@ export default {
 
 .v-list-item__title {
   color: #fff;
+}
+
+.v-icon {
+  color: #000;
 }
 
 .is-mobile .v-list-item__title {

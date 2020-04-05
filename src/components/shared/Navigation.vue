@@ -2,8 +2,8 @@
   <v-navigation-drawer
     class="app-drawer primary"
     :value="drawer"
-    width="200px"
     :mini-variant="isCollapsed"
+    width="200px"
     :expandOnHover="false"
     :mobile-break-point="tablet"
     :hide-overlay="true"
@@ -71,7 +71,7 @@ export default {
 
 .app-drawer .v-list {
   position: sticky;
-  top: 0;
+  top: 24px;
 }
 
 .is-mobile .app-drawer {
@@ -104,7 +104,7 @@ export default {
 }
 
 .app-drawer.v-navigation-drawer--mini-variant .collapse-bar .icon {
-  transform: rotate(180deg);
+  transform: rotateY(180deg);
 }
 
 .app-drawer .collapse-bar .icon-wrapper {

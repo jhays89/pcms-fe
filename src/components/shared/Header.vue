@@ -4,9 +4,7 @@
     <v-btn @click="signOut">Sign Out</v-btn>
     <div class="mobile-menu-icon-container" @click="createSideWidgetEvent">
       <div class="menu-bars-wrapper">
-        <div class="menu-bar"></div>
-        <div class="menu-bar"></div>
-        <div class="menu-bar"></div>
+        <v-icon>mdi-menu</v-icon>
       </div>
     </div>
   </v-app-bar>
@@ -59,11 +57,13 @@ export default {
   position: sticky;
   top: 20px;
   margin-bottom: 20px;
+  border-radius: 7px;
 }
 
 .header.v-app-bar.v-toolbar.v-sheet {
   height: 60px !important;
   background-color: #fff;
+  box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
 }
 
 .header .logo-container {
