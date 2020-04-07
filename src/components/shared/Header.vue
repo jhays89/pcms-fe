@@ -1,6 +1,19 @@
 <template>
-  <v-app-bar class="header">
-    <div class="logo-container"></div>
+  <v-app-bar class="app-header">
+    <div class="flex align-baseline">
+      <v-select
+        :items="items"
+        placeholder="Select client"
+        :hide-details="true"
+      >
+        <template slot="selection" slot-scope="data">
+          <v-img width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl"/>
+        </template>
+        <template slot="item" slot-scope="data">
+          <v-img class="app-header-client-item" width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl"/>
+        </template>
+      </v-select>
+    </div>
     <v-btn @click="signOut">Sign Out</v-btn>
     <div class="mobile-menu-icon-container" @click="createSideWidgetEvent">
       <div class="menu-bars-wrapper">
@@ -18,7 +31,16 @@ export default {
   name: 'app-header',
 
   data() {
-    return {};
+    return {
+      currentClient: {
+        text: 'Client 1', value: 1, logoUrl: 'https://www.gamestop.com//on/demandware.static/Sites-gamestop-us-Site/-/default/dw5d4e98e3/images/svg-icons/logo-1280.svg'
+      },
+      items: [
+        { text: 'Client 1', value: 1, logoUrl: 'https://www.gamestop.com//on/demandware.static/Sites-gamestop-us-Site/-/default/dw5d4e98e3/images/svg-icons/logo-1280.svg' },
+        { text: 'Client 2', value: 2, logoUrl: 'https://qph.fs.quoracdn.net/main-qimg-517c2fff8d8c4d489dffa3ceb569557d.webp' },
+        { text: 'Client 3', value: 3, logoUrl: 'https://cdn.corporate.walmart.com/dims4/WMT/c2bbbe9/2147483647/strip/true/crop/2389x930+0+0/resize/1446x563!/quality/90/?url=https%3A%2F%2Fcdn.corporate.walmart.com%2Fd6%2Fe7%2F48e91bac4a8ca8f22985b3682370%2Fwalmart-logos-lockupwtag-horiz-blu-rgb.png' }
+      ]
+    };
   },
   
   methods: {
@@ -38,6 +60,9 @@ export default {
       catch (error) {
         alerts.error({ text: 'An error occured while signing you out. Please try again' });
       }
+    },
+    goToClientDashboard() {
+      this.$router.push(`Accounts/${this.$store.getters('account').id}/Clients/${currentClient.id}`);
     }
   }
 }
@@ -45,39 +70,53 @@ export default {
 </script>
 
 <style>
-.v-toolbar__content {
+.app-header .v-toolbar__content {
   height: 60px !important;
   height: 100%;  
   justify-content: space-between;
 }
+
+.app-header .v-input--is-label-active .v-select__selections input {
+  display: none;
+}
+
+.app-header .v-input,
+.app-header .v-select__selections {
+  width: 120px;
+  height: 50px;
+}
+
+.app-header .v-input {
+  align-items: center;
+}
+
+.app-header .v-input__slot:before,
+.app-header .v-input__slot::after {
+  display: none;
+}
+
+.app-header .v-input__append-inner {
+  position: relative;
+  top: 10px;
+}
+
 </style>
 
 <style scoped>
-.header {
+.app-header {
   position: sticky;
   top: 20px;
   margin-bottom: 20px;
   border-radius: 7px;
 }
 
-.header.v-app-bar.v-toolbar.v-sheet {
+.app-header.v-app-bar.v-toolbar.v-sheet {
   height: 60px !important;
   background-color: #fff;
   box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
 }
 
-.header .logo-container {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-image: url('../../assets/client-logo-1.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-left: 15px;
-}
-
-.header .mobile-menu-icon-container {
+.app-header .mobile-menu-icon-container {
   display: flex;
   align-items: center;
   margin-right: 15px;
@@ -85,11 +124,11 @@ export default {
   height: 35px;
 }
 
-.header .mobile-menu-icon-container:hover {
+.app-header .mobile-menu-icon-container:hover {
   cursor: pointer;
 }
 
-.header .mobile-menu-icon-container .menu-bar {
+.app-header .mobile-menu-icon-container .menu-bar {
   height: 2px;
   background-color: #fff;
   margin-bottom: 6px;
@@ -97,16 +136,21 @@ export default {
   transition: transform 250ms ease-out;
 }
 
-.header .mobile-menu-icon-container:hover .menu-bar {
+.app-header .mobile-menu-icon-container:hover .menu-bar {
   transform: scaleX(.8);
 }
 
-.header .mobile-menu-icon-container .menu-bars-wrapper {
+.app-header .mobile-menu-icon-container .menu-bars-wrapper {
   width: 100%;
 }
 
+.app-header-client-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 @media screen and (min-width: 769px) {
-  .header .mobile-menu-icon-container {
+  .app-header .mobile-menu-icon-container {
     display: none;
   }
 }
