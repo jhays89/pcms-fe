@@ -1,23 +1,44 @@
 <template>
   <v-app-bar class="app-header">
-    <div class="flex align-baseline">
+    <div>
       <v-select
         :items="items"
         placeholder="Select client"
         :hide-details="true"
       >
         <template slot="selection" slot-scope="data">
-          <v-img width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl"/>
+          <v-img width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl" />
         </template>
         <template slot="item" slot-scope="data">
           <v-img class="app-header-client-item" width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl"/>
         </template>
       </v-select>
     </div>
-    <v-btn @click="signOut">Sign Out</v-btn>
-    <div class="mobile-menu-icon-container" @click="createSideWidgetEvent">
-      <div class="menu-bars-wrapper">
-        <v-icon>mdi-menu</v-icon>
+    <div class="actions">
+      <v-badge
+        content="99+"
+        color="error"
+        overlap
+        left
+      >
+        <router-link to="/">
+          <v-icon size="25" class="bell">mdi-bell</v-icon>
+        </router-link>
+      </v-badge>
+
+      <v-divider
+        class="ml-4 mr-4" 
+        vertical
+      />
+      <v-row>
+        <v-col>
+          <!-- Start here: create avatar-->
+        </v-col>
+        <v-col>
+        </v-col>
+      </v-row>
+      <div class="menu-bars-wrapper mobile-menu-icon-container" @click="createSideWidgetEvent">
+        <v-icon>mdi-menu</v-icon>        
       </div>
     </div>
   </v-app-bar>
@@ -116,14 +137,6 @@ export default {
   box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
 }
 
-.app-header .mobile-menu-icon-container {
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
-  width: 35px;
-  height: 35px;
-}
-
 .app-header .mobile-menu-icon-container:hover {
   cursor: pointer;
 }
@@ -147,6 +160,16 @@ export default {
 .app-header-client-item {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.app-header .actions {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.app-header .actions .mdi-bell {
+  color: 
 }
 
 @media screen and (min-width: 769px) {

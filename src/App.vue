@@ -173,4 +173,10 @@ a, a:visited {
 .wd-app .v-application .router-link-exact-active .v-list-item__icon .v-icon {
   color: #7367F0 !important;
 }
+
+/* v-select */
+.wd-app .v-select .v-input__icon .primary--text,
+.wd-app .v-select .v-input__icon .v-icon {
+  color: #7367F0 !important;
+}
 </style>
