@@ -5,7 +5,7 @@
     <v-text-field v-model="lastName" label="Last name" type="text" />
     <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required, rules.email]" />
     <v-text-field v-model="password" class="mb-6" label="Password" type="password" :rules="[rules.password, rules.required]" />
-    <v-btn @click="register" :disabled="!isValid" :loading="isLoading">Register</v-btn>
+    <v-btn class="accent" @click="register" :disabled="!isValid" :loading="isLoading">Register</v-btn>
   </div>
 </template>
 

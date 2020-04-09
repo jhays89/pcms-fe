@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <v-btn @click="createAppNotificationEvent">App Notification</v-btn>
+    <v-btn class="accent" @click="createAppNotificationEvent">App Notification</v-btn>
   </div>
 </template>
 

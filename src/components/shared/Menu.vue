@@ -10,10 +10,10 @@
     <v-list-item v-for="item in items" :key="item.title" link @click="shouldCloseMenu">
       <router-link :to="item.link">
         <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
+          <v-icon class="black--text">{{ item.icon }}</v-icon>
         </v-list-item-icon>
           <v-list-item-content>
-          <v-list-item-title class="text-left">{{ item.title }}</v-list-item-title>
+          <v-list-item-title class="text-left accent-dark--text">{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </router-link>
     </v-list-item>
@@ -67,17 +67,5 @@ export default {
 .v-list-item a {
   display: flex;
   width: 100%;
-}
-
-.v-list-item__title {
-  color: #fff;
-}
-
-.v-icon {
-  color: #000;
-}
-
-.is-mobile .v-list-item__title {
-  color: #2c3e50;
 }
 </style>

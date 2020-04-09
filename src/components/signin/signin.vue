@@ -3,7 +3,7 @@
     <h2 class="text-left">Sign in</h2>
     <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required]" />
     <v-text-field v-model="password" class="mb-6" label="Password" type="password" :rules="[rules.required]" />
-    <v-btn @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>
+    <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>
   </div>
 </template>
 
