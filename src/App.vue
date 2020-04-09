@@ -137,7 +137,7 @@ a, a:visited {
 /* accent */
 .v-navigation-drawer .router-link-exact-active .v-list-item__title,
 .v-navigation-drawer .router-link-exact-active .v-icon,
-.v-select.accent--text .v-input__icon .v-icon {
+.v-select .v-input__icon .v-icon {
   color: #7367F0 !important;
 }
 </style>

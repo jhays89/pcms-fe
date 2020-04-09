@@ -2,7 +2,6 @@
   <v-app-bar class="app-header white">
     <div>
       <v-select
-        class="accent--text"
         :items="items"
         placeholder="Select client"
         :hide-details="true"
