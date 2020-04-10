@@ -124,9 +124,6 @@ a, a:visited {
 }
 
 /* VUETIFY */
-.wd-app .v-application {
-  background-color: #f8f8f8;
-}
 
 /* card */
 .wd-app .v-content .v-card {
@@ -137,40 +134,10 @@ a, a:visited {
   height: 100%;
 }
 
-/* primary */
-.wd-app .v-application .primary {
-  background-color: #fff !important;
-  border-color: #fff !important;
-}
-
-.wd-app .v-application .primary--text {
-  color: #000 !important;
-}
-
 /* accent */
-.wd-app .accent {
-  background-color: #7367F0 !important;
-  border-color: #7367F0 !important;
-}
-
-/* anchor */
-.wd-app .v-application .anchor {
-  color: #000 !important;
-}
-
-/* v-btn */
-.wd-app .v-application .v-btn {
-  background-color: #7367F0 !important;
-  color: #fff !important;
-}
-
-/* v-list */
-.wd-app .v-application .v-list-item__title {
-  color: #000 !important;
-}
-
-.wd-app .v-application .router-link-exact-active .v-list-item__title,
-.wd-app .v-application .router-link-exact-active .v-list-item__icon .v-icon {
+.v-navigation-drawer .router-link-exact-active .v-list-item__title,
+.v-navigation-drawer .router-link-exact-active .v-icon,
+.v-select .v-input__icon .v-icon {
   color: #7367F0 !important;
 }
 </style>

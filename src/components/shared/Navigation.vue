@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    class="app-drawer primary"
+    class="app-drawer white"
     :value="drawer"
     :mini-variant="isCollapsed"
     width="200px"
@@ -12,8 +12,8 @@
     <app-menu />
     <div class="collapse-bar" v-on:click="toggleCollapse" v-bind:class="{ 'hide-collapse-bar': isMobile }">
       <div class="icon-wrapper accent">
-        <i class="fa fa-chevron-left icon"></i>
-        <i class="fa fa-chevron-left icon"></i>
+        <i class="fa fa-chevron-left icon white--text"></i>
+        <i class="fa fa-chevron-left icon white--text"></i>
       </div>
     </div>
   </v-navigation-drawer>
@@ -98,7 +98,6 @@ export default {
   position: relative;
   left: -2px;
   font-size: 10px;
-  color: #e0e0e0;
 
   transition: transform 250ms ease-in;
 }
@@ -116,11 +115,6 @@ export default {
   padding: 10px;
   width: 30px;
   height: 30px;
-  background-color: #27a0f8;
-}
-
-.app-drawer .v-list-item__title {
-  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
