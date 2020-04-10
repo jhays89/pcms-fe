@@ -7,7 +7,7 @@
         </router-link>
       </v-list-item-content>
     </v-list-item>
-    <v-list-item v-for="item in items" :key="item.title" link @click="shouldCloseMenu">
+    <v-list-item v-for="item in displayableItems" :key="item.title" link @click="shouldCloseMenu">
       <router-link :to="item.link">
         <v-list-item-icon>
           <v-icon class="black--text">{{ item.icon }}</v-icon>
@@ -30,14 +30,16 @@ export default {
       return {
         drawer: true,
         items: [
-          { title: 'Dashboard', icon: 'mdi-speedometer', link: '/' },
-          { title: 'Tasks', icon: 'mdi-clipboard-check-outline', link: '/Test' },
-          { title: 'Clients', icon: 'mdi-account-group-outline', link: '/Test' },
-          { title: 'Campaigns', icon: 'mdi-desktop-mac-dashboard', link: '/Test' },
-          { title: 'Templates', icon: 'mdi-newspaper', link: '/Test' },
-          { title: 'Workflows', icon: 'mdi-graph-outline', link: '/Test' },
-          { title: 'Login', icon: 'mdi-login-variant', link: '/Login' },
-          { title: 'Test', icon: 'mdi-bomb', link: '/Test' },
+          { title: 'Dashboard', icon: 'mdi-speedometer', link: '/', type: 'all' },
+          { title: 'Tasks', icon: 'mdi-clipboard-check-outline', link: '/Test', type: 'all' },
+          { title: 'Clients', icon: 'mdi-account-group-outline', link: '/Test', type: 'all' },
+          { title: 'Campaigns', icon: 'mdi-desktop-mac-dashboard', link: '/Test', type: 'all' },
+          { title: 'Templates', icon: 'mdi-newspaper', link: '/Test', type: 'all' },
+          { title: 'Workflows', icon: 'mdi-graph-outline', link: '/Test', type: 'all' },
+          { title: 'Login', icon: 'mdi-login-variant', link: '/Login', type: 'all' },
+          { title: 'Test', icon: 'mdi-bomb', link: '/Test', type: 'all' },
+          { title: 'Profile Settings', icon: 'mdi-account-circle-outline', link: '/Settings', type: 'mobile' },
+          { title: 'Agency Settings', icon: 'mdi-domain', link: '/', type: 'mobile' },
         ],
       };
     },
@@ -45,6 +47,16 @@ export default {
     computed: {
       isMobile() {
         return this.$store.getters.isMobile;
+      },
+      displayableItems() {
+        return this.items.filter(item => {
+          if(this.isMobile) {
+            return item;
+          }
+          else if(item.type.toUpperCase() === 'ALL') {
+            return item;
+          }
+        }); 
       }
     },
 

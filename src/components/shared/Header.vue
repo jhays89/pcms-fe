@@ -1,11 +1,7 @@
 <template>
   <v-app-bar class="app-header white">
     <div>
-      <v-select
-        :items="items"
-        placeholder="Select client"
-        :hide-details="true"
-      >
+      <v-select :items="items" placeholder="Select client" :hide-details="true">
         <template slot="selection" slot-scope="data">
           <v-img width="120" height="50" @click="goToClientDashboard" contain :src="data.item.logoUrl" />
         </template>
@@ -15,40 +11,36 @@
       </v-select>
     </div>
     <div class="d-flex align-center">
-      <v-badge
-        content="99+"
-        color="error"
-        overlap
-        left
-      >
+      <v-badge content="99+" color="error" overlap left>
         <router-link to="/">
           <v-icon size="25" class="accent--text">mdi-bell</v-icon>
         </router-link>
       </v-badge>
-
-      <v-divider
-        class="ml-2 mr-2" 
-        vertical
-      />
+      <v-divider v-if="!isMobile" class="ml-2 mr-2" vertical />
       <v-row no-gutters class="d-flex align-center">
-        <div>
+        <div v-if="!isMobile">
           <v-avatar>
-            <v-img
-              height="50"
-              width="50"
-              contain
-              src="https://cdn.vuetifyjs.com/images/john.jpg"
-              alt="John"
-            />
+            <v-img height="50" width="50" contain src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
           </v-avatar>
         </div>
-        <div class="ml-2 mr-2">
+        <div v-if="!isMobile" class="ml-2 mr-2">
           <div class="text-truncate text-left accent--text font-weight-bold">Solid Snake</div>
           <div class="text-left">Owner</div>
         </div>
-        <v-icon class="accent--text">mdi-menu-down</v-icon>
+        <v-menu v-if="!isMobile" left origin="top center" transition="scale-transition">
+          <template v-slot:activator="{ on }">
+            <v-icon class="accent--text" v-on="on">mdi-menu-down</v-icon>
+          </template>
+          <v-list>
+            <v-list-item v-for="(item, i) in menuItems" :key="i">
+              <router-link :to="item.link">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </router-link>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-row>
-      <div class="menu-bars-wrapper mobile-menu-icon-container" @click="createSideWidgetEvent">
+      <div class="mobile-menu-icon-container menu-bars-wrapper" @click="createSideWidgetEvent">
         <v-icon>mdi-menu</v-icon>        
       </div>
     </div>
@@ -64,6 +56,10 @@ export default {
 
   data() {
     return {
+      menuItems: [
+        { title: 'Profile Setting', link: '/settings' },
+        { title: 'Agency Setting', link: '/' }
+      ],
       currentClient: {
         text: 'Client 1', value: 1, logoUrl: 'https://www.gamestop.com//on/demandware.static/Sites-gamestop-us-Site/-/default/dw5d4e98e3/images/svg-icons/logo-1280.svg'
       },
@@ -74,7 +70,13 @@ export default {
       ]
     };
   },
-  
+
+  computed: {
+    isMobile() {
+      return this.$store.getters.isMobile;
+    }
+  },
+
   methods: {
     createSideWidgetEvent() {
       var widget = {
@@ -94,7 +96,7 @@ export default {
       }
     },
     goToClientDashboard() {
-      this.$router.push(`Accounts/${this.$store.getters('account').id}/Clients/${currentClient.id}`);
+      this.$router.push(`/`);
     }
   }
 }
@@ -151,24 +153,13 @@ export default {
   cursor: pointer;
 }
 
-.app-header .mobile-menu-icon-container .menu-bar {
-  height: 2px;
-  margin-bottom: 6px;
-
-  transition: transform 250ms ease-out;
-}
-
-.app-header .mobile-menu-icon-container:hover .menu-bar {
-  transform: scaleX(.8);
-}
-
-.app-header .mobile-menu-icon-container .menu-bars-wrapper {
-  width: 100%;
-}
-
 .app-header-client-item {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.menu-bars-wrapper {
+  margin-left: 50px;
 }
 
 @media screen and (min-width: 769px) {
