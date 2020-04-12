@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <h2 class="text-left">Sign in</h2>
+  <div class="px-8 py-4 flex-grow-1">
+    <h2 class="text-left">Sign In</h2>
     <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required]" />
     <v-text-field v-model="password" class="mb-6" label="Password" type="password" :rules="[rules.required]" />
-    <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>
+    <v-row class="justify-space-between">
+      <v-btn @click="setMode('register')" outlined class="accent--text">Register</v-btn>
+      <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>
+    </v-row>
   </div>
 </template>
 
@@ -49,6 +52,9 @@ export default {
         email: this.email,
         password: this.password
       };
+    },
+    setMode(value) {
+      this.$emit('setMode', value);
     }
   },
 
