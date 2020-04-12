@@ -36,9 +36,6 @@ export default {
     },
     isMobile() {
       return this.$store.getters.isMobile;
-    },
-    pageClass() {
-      return this.$route.meta.pageClass;
     }
   },
   created() {
