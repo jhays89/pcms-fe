@@ -11,6 +11,7 @@ const opts = {
         primary: '#2c3e50',
         accent: '#7367F0',
         'accent-dark': '#000000',
+        'accent-background': '#F7F7F7'
       },
     },
   },

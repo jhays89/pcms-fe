@@ -1,7 +1,7 @@
 <template>
-  <div id="app" :class="['wd-app', {'is-mobile': isMobile}]">
+  <div id="app" :class="['wd-app', {'is-mobile': isMobile}, { 'public-page': isPublic}]">
     <v-app>
-      <div class="main-wrapper">
+      <div class="main-wrapper accent-background">
         <app-nav v-if="!isPublic"></app-nav>
         <v-content class="main-content">
           <app-header v-if="!isPublic"></app-header>
@@ -36,6 +36,9 @@ export default {
     },
     isMobile() {
       return this.$store.getters.isMobile;
+    },
+    pageClass() {
+      return this.$route.meta.pageClass;
     }
   },
   created() {
@@ -55,7 +58,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #f8f8f8;
 }
 
 body {
@@ -137,7 +139,22 @@ a, a:visited {
 /* accent */
 .v-navigation-drawer .router-link-exact-active .v-list-item__title,
 .v-navigation-drawer .router-link-exact-active .v-icon,
-.v-select .v-input__icon .v-icon {
+.v-select .v-input__icon .v-icon,
+.v-input--checkbox .v-icon {
   color: #7367F0 !important;
+}
+/* menu */
+.v-menu__content {
+  box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
+}
+/* container */
+.container {
+  padding: 0;
+}
+
+/* public */
+.public-page .v-content__wrap {
+  display: flex;
+  align-items: center;
 }
 </style>

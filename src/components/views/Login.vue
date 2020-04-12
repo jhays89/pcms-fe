@@ -1,17 +1,24 @@
 <template>
-<v-container class="login-page">
-<v-row class="align-stretch">
-  <v-col cols="12" sm="6">
-    <v-card class="pa-4">
-     <register />
-    </v-card>
-  </v-col>
-    <v-col cols="12" sm="6">
-      <v-card class="pa-4">
-        <signin />
-      </v-card>
-  </v-col>
-</v-row>
+<v-container>
+  <v-card max-width="1000" height="480" class="d-flex mx-auto">
+    <v-row no-gutters class="align-stretch">
+      <v-col class="pt-0 pb-0 accent-background d-flex align-center">
+        <v-img src="/static/signin-graphic.png" />
+      </v-col>
+      <v-col class="pt-0 pb-0 d-flex align-center">
+        <transition name="fade">
+          <Register 
+            v-if="isRegisterMode"
+            v-on:setMode="setMode"
+          />
+          <Signin
+            v-if="isLogInMode"
+            v-on:setMode="setMode"
+          />
+        </transition>
+      </v-col>
+    </v-row>
+  </v-card>
 </v-container>
 </template>
 
@@ -21,6 +28,7 @@ import Signin from '../signin/Signin.vue';
 
 export default {
   name: 'Login',
+
   components: {
     Register,
     Signin
@@ -28,12 +36,25 @@ export default {
 
   data () {
     return {
+      mode: 'login',
+      isSignInValid: false,
+      isRegisterValid: false
+    }
+  },
 
+  computed: {
+    isLogInMode() {
+      return this.mode === 'login';
+    },
+    isRegisterMode () {
+      return this.mode === 'register';
     }
   },
 
   methods: {
-
+    setMode(value) {
+      this.mode = value;
+    }
   }
 }
 </script>
