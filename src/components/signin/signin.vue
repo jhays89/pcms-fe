@@ -1,8 +1,13 @@
 <template>
-  <div class="px-8 py-4 flex-grow-1">
-    <h2 class="text-left">Sign In</h2>
+  <div class="px-8 py-4 flex-grow-1 text-left">
+    <h2 class="">Sign In</h2>
     <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required]" />
-    <v-text-field v-model="password" class="mb-6" label="Password" type="password" :rules="[rules.required]" />
+    <v-text-field v-model="password" label="Password" type="password" :rules="[rules.required]" />
+    <v-row class="mb-4">
+      <v-col class="text-right pa-0">
+        <v-btn @click="setMode('forgot-password')" text class="accent--text">Forgot Password</v-btn>
+      </v-col>
+    </v-row>
     <v-row class="justify-space-between">
       <v-btn @click="setMode('register')" outlined class="accent--text">Register</v-btn>
       <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>

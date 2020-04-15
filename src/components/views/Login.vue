@@ -15,6 +15,15 @@
             v-if="isLogInMode"
             v-on:setMode="setMode"
           />
+          <ForgotPassword 
+            v-if="isForgotPasswordMode"
+            v-on:setMode="setMode"
+          />
+          <ResetPassword
+            :token="token"
+            v-if="isResetPasswordMode"
+            v-on:setMode="setMode"
+          />
         </transition>
       </v-col>
     </v-row>
@@ -25,20 +34,23 @@
 <script>
 import Register from '../register/Register.vue';
 import Signin from '../signin/Signin.vue';
+import ForgotPassword from '../forgot-password/ForgotPassword.vue';
+import ResetPassword from '../reset-password/ResetPassword.vue';
 
 export default {
   name: 'Login',
 
   components: {
     Register,
-    Signin
+    Signin,
+    ForgotPassword,
+    ResetPassword
   },
 
   data () {
     return {
       mode: 'login',
-      isSignInValid: false,
-      isRegisterValid: false
+      token: ''
     }
   },
 
@@ -48,13 +60,33 @@ export default {
     },
     isRegisterMode () {
       return this.mode === 'register';
+    },
+    isForgotPasswordMode() {
+      return this.mode === 'forgot-password';
+    },
+    isResetPasswordMode() {
+      return this.mode === 'reset-password';
     }
   },
 
   methods: {
+    initialize() {
+      if(this.$route.query.mode) {
+        this.setMode(this.$route.query.mode);
+      }
+
+      if(this.$route.query.token) {
+        this.token = this.$route.query.token;
+      }
+    },
+
     setMode(value) {
       this.mode = value;
     }
+  },
+
+  created() {
+    this.initialize();
   }
 }
 </script>

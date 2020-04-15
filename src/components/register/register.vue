@@ -1,6 +1,6 @@
 <template>
-  <div class="px-8 py-4 flex-grow-1">
-    <h2 class="text-left">Registration</h2>
+  <div class="px-8 py-4 flex-grow-1 text-left">
+    <h2>Registration</h2>
     <v-text-field v-model="firstName" label="First name" type="text" />
     <v-text-field v-model="lastName" label="Last name" type="text" />
     <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required, rules.email]" />
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-
 import alerts from '@/utils/alerts';
 
 export default {
