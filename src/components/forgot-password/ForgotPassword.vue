@@ -2,9 +2,9 @@
   <div class="px-8 py-4 flex-grow-1 text-left">
     <h2>Recover your password</h2>
     <p>Please enter your email address and we'll send you an email with instructions on how to reset your password.</p>
-    <v-text-field v-model="email" label="Email" type="email" />
-    <v-row class="justify-space-between">
-      <v-btn @click="setMode('login')" outlined class="accent--text">Back to login</v-btn>
+    <v-text-field v-model="email" outlined dense label="Email" type="email" />
+    <v-row no-gutters class="justify-space-between">
+      <v-btn @click="setMode('login')" outlined dense class="accent--text">Back to login</v-btn>
       <v-btn class="accent" @click="recoverPassword" :disabled="!isValid" :loading="isLoading">Recover Password</v-btn>
     </v-row>
   </div>

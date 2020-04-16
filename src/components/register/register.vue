@@ -1,11 +1,11 @@
 <template>
   <div class="px-8 py-4 flex-grow-1 text-left">
-    <h2>Registration</h2>
-    <v-text-field v-model="firstName" label="First name" type="text" />
-    <v-text-field v-model="lastName" label="Last name" type="text" />
-    <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required, rules.email]" />
-    <v-text-field v-model="password" label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-4"/>
-    <v-row>
+    <h2 class="mb-2">Registration</h2>
+    <v-text-field v-model="firstName" outlined dense label="First name" type="text" />
+    <v-text-field v-model="lastName" outlined dense label="Last name" type="text" />
+    <v-text-field v-model="email" outlined dense label="Email" type="email" :rules="[rules.required, rules.email]" />
+    <v-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-2"/>
+    <v-row no-gutters>
       <v-checkbox
         v-model="termsAndConditions"
         :loading="isLoading"
@@ -15,7 +15,7 @@
       </v-checkbox>
       <span>I accept the <span class="accent--text">Terms and Conditions</span></span>
     </v-row>
-    <v-row class="justify-space-between">
+    <v-row no-gutters class="justify-space-between">
       <v-btn @click="setMode('login')" outlined class="accent--text">Back to login</v-btn>
       <v-btn class="accent" @click="register" :disabled="!isValid" :loading="isLoading">Register</v-btn>
     </v-row>

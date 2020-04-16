@@ -1,9 +1,10 @@
 <template>
 <v-container>
-  <v-card max-width="1000" height="480" class="d-flex mx-auto">
+  <v-card max-width="1000" class="d-flex mx-auto">
     <v-row no-gutters class="align-stretch">
       <v-col class="pt-0 pb-0 accent-background d-flex align-center">
-        <v-img src="/static/signin-graphic.png" />
+        <v-img v-show="isRegisterMode || isLogInMode" src="/static/signin-graphic.png" />
+        <v-img v-show="isForgotPasswordMode || isResetPasswordMode" src="/static/recover-password-graphic.png" />
       </v-col>
       <v-col class="pt-0 pb-0 d-flex align-center">
         <transition name="fade">
@@ -90,3 +91,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.v-card .row .col:first-child {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.v-card .row .col:last-child {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+</style>

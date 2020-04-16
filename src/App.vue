@@ -144,12 +144,22 @@ a, a:visited {
 .v-menu__content {
   box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.24);
 }
+
+/* btn */
+.v-btn {
+  border-radius: 7px;
+}
+
+.v-btn__content {
+  text-transform: none;
+}
+
 /* container */
 .container {
   padding: 0;
 }
 
-/* public */
+/* PUBLIC */
 .public-page .v-content__wrap {
   display: flex;
   align-items: center;
