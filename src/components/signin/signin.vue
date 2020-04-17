@@ -1,11 +1,17 @@
 <template>
-  <div class="px-8 py-4 flex-grow-1">
-    <h2 class="text-left">Sign In</h2>
-    <v-text-field v-model="email" label="Email" type="email" :rules="[rules.required]" />
-    <v-text-field v-model="password" class="mb-6" label="Password" type="password" :rules="[rules.required]" />
-    <v-row class="justify-space-between">
-      <v-btn @click="setMode('register')" outlined class="accent--text">Register</v-btn>
-      <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Sign in</v-btn>
+  <div class="px-8 py-4 flex-grow-1 text-left">
+    <h2>Login</h2>
+    <p class="mb-6">Welcome back, please login to your account</p>
+    <v-text-field v-model="email" outlined dense label="Email" type="email" :rules="[rules.required]" />
+    <v-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.required]" />
+    <v-row no-gutters class="mb-4">
+      <v-col class="text-right pa-0">
+        <v-btn @click="setMode('forgot-password')" text class="accent--text">Forgot Password</v-btn>
+      </v-col>
+    </v-row>
+    <v-row no-gutters class="justify-space-between">
+      <v-btn @click="setMode('register')" outlined dense class="accent--text">Register</v-btn>
+      <v-btn class="accent" @click="signin" :disabled="!isValid" :loading="isLoading">Login</v-btn>
     </v-row>
   </div>
 </template>
