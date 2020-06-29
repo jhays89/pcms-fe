@@ -26,8 +26,7 @@ export default {
       this.isLoading = true;
 
       try {
-        const accountExists = await this.doesAccountExists();
-        if(accountExists) {
+        if(this.isValid) {
           await this.sendRecoveryEmail();
 
           alerts.success({
@@ -51,15 +50,6 @@ export default {
       };
     },
 
-    async doesAccountExists() {
-      const response = await this.$http.POST('api/AppUsers/GetByEmail', this.getPayload());
-      if(response.data) {
-        return true;
-      }
-
-      return false;
-    },
-
     async sendRecoveryEmail() {
       await this.$http.POST('api/AppUsers/ForgotPassword', this.getPayload());
     },
@@ -72,7 +62,7 @@ export default {
   computed: {
     isValid() {
       // eslint-disable-next-line
-      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email); 
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email);
     }
   }
 }

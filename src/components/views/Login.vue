@@ -8,7 +8,7 @@
       </v-col>
       <v-col class="pt-0 pb-0 d-flex align-center">
         <transition name="fade">
-          <Register 
+          <Register
             v-if="isRegisterMode"
             v-on:setMode="setMode"
           />
@@ -16,7 +16,7 @@
             v-if="isLogInMode"
             v-on:setMode="setMode"
           />
-          <ForgotPassword 
+          <ForgotPassword
             v-if="isForgotPasswordMode"
             v-on:setMode="setMode"
           />
@@ -50,7 +50,7 @@ export default {
 
   data () {
     return {
-      mode: 'login',
+      mode: 'forgot-password',
       token: ''
     }
   },
