@@ -19,6 +19,10 @@ export default {
     token: {
       type: String,
       default: ''
+    },
+    email: {
+      type: String,
+      default: ''
     }
   },
 
@@ -51,7 +55,7 @@ export default {
       this.isLoading = true;
 
       try {
-        await this.$http.POST('api/AppUsers/ResetPassword', this.getPayload()); // TODO create endpoint and test
+        await this.$http.POST('api/AppUsers/ResetPassword', this.getPayload());
         this.setMode('login');
 
         alerts.success({
@@ -69,10 +73,12 @@ export default {
 
     getPayload() {
       return {
-        password: this.password
+        password: this.password,
+        email: this.email,
+        token: this.token
       }
     },
-    
+
     setMode(value) {
       this.$emit('setMode', value);
     }

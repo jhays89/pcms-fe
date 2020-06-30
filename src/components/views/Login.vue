@@ -22,6 +22,7 @@
           />
           <ResetPassword
             :token="token"
+            :email="email"
             v-if="isResetPasswordMode"
             v-on:setMode="setMode"
           />
@@ -50,8 +51,9 @@ export default {
 
   data () {
     return {
-      mode: 'forgot-password',
-      token: ''
+      mode: 'login',
+      token: '',
+      email: ''
     }
   },
 
@@ -71,13 +73,17 @@ export default {
   },
 
   methods: {
-    initialize() {
+    initialize() { // START HERE - capture email, token and mode
       if(this.$route.query.mode) {
         this.setMode(this.$route.query.mode);
       }
 
-      if(this.$route.query.token) {
-        this.token = this.$route.query.token;
+      if(this.$route.query.t) {
+        this.token = this.$route.query.t;
+      }
+
+      if(this.$route.query.e) {
+        this.email = this.$route.query.e;
       }
     },
 
