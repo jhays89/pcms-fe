@@ -8,7 +8,7 @@
       </v-col>
       <v-col class="pt-0 pb-0 d-flex align-center">
         <transition name="fade">
-          <Register 
+          <Register
             v-if="isRegisterMode"
             v-on:setMode="setMode"
           />
@@ -16,12 +16,13 @@
             v-if="isLogInMode"
             v-on:setMode="setMode"
           />
-          <ForgotPassword 
+          <ForgotPassword
             v-if="isForgotPasswordMode"
             v-on:setMode="setMode"
           />
           <ResetPassword
             :token="token"
+            :email="email"
             v-if="isResetPasswordMode"
             v-on:setMode="setMode"
           />
@@ -51,7 +52,8 @@ export default {
   data () {
     return {
       mode: 'login',
-      token: ''
+      token: '',
+      email: ''
     }
   },
 
@@ -71,13 +73,17 @@ export default {
   },
 
   methods: {
-    initialize() {
+    initialize() { // START HERE - capture email, token and mode
       if(this.$route.query.mode) {
         this.setMode(this.$route.query.mode);
       }
 
-      if(this.$route.query.token) {
-        this.token = this.$route.query.token;
+      if(this.$route.query.t) {
+        this.token = this.$route.query.t;
+      }
+
+      if(this.$route.query.e) {
+        this.email = this.$route.query.e;
       }
     },
 
