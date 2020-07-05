@@ -1,7 +1,7 @@
 <template>
-  <v-avatar class="profile-image" :color="color" :size="size"> <!-- TODO Wrap in a badge? -->
+  <v-avatar class="profile-image" :color="color" :size="size">
     <v-img v-if="url" :src="url" contain />
-    <span v-else class="white--text headline">{{initials}}</span>
+    <span v-else class="white--text headline text-uppercase">{{initials}}</span>
   </v-avatar>
 </template>
 
@@ -11,18 +11,14 @@ export default {
     url: String,
     firstName: String,
     lastName: String,
-    backgroundColor: String,
     size: Number,
   },
   data() {
     return {
-
+      color: '#7367f0'
     };
   },
   computed: {
-    color() {
-      return this.backgroundColor || '#7367f0';
-    },
     initials() {
       if(this.firstInitial || this.lastInitial) {
         return this.firstInitial + this.lastInitial;
@@ -50,10 +46,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .profile-image .initials {
-    color: #fff;
-    text-transform: uppercase;
-  }
-</style>

@@ -5,12 +5,12 @@
         :url="url"
         :firstName="firstName"
         :lastName="lastName"
-        :backgroundColor="backgroundColor"
         :size="size"
       />
     </v-col>
     <v-col class="flex-grow-0">
-      <v-btn class="accent">Change Avatar</v-btn> <!-- START HERE -->
+      <v-btn class="accent mb-4">Change Avatar</v-btn> <!-- START HERE play with https://www.npmjs.com/package/vue-image-upload-resize-->
+      <v-btn class="accent">Use Initials</v-btn>
     </v-col>
   </v-row>
 </template>
@@ -28,7 +28,6 @@ export default {
       url: '',
       firstName: '',
       lastName: '',
-      backgroundColor: '',
       size: 100
     };
   }
