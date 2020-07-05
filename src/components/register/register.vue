@@ -1,10 +1,10 @@
 <template>
   <div class="px-8 py-4 flex-grow-1 text-left">
     <h2 class="mb-2">Registration</h2>
-    <v-text-field v-model="firstName" outlined dense label="First name" type="text" />
-    <v-text-field v-model="lastName" outlined dense label="Last name" type="text" />
-    <v-text-field v-model="email" outlined dense label="Email" type="email" :rules="[rules.required, rules.email]" />
-    <v-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-2"/>
+    <app-text-field v-model="firstName" label="First name" type="text" />
+    <app-text-field v-model="lastName" label="Last name" type="text" />
+    <app-text-field v-model="email" label="Email" type="email" :rules="[rules.required, rules.email]" />
+    <app-text-field v-model="password" label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-2"/>
     <v-row no-gutters>
       <v-checkbox
         v-model="termsAndConditions"
@@ -24,9 +24,13 @@
 
 <script>
 import alerts from '@/utils/alerts';
+const AppTextField = () => import('@/components/shared/app-text-field');
 
 export default {
   name: 'Register',
+    components: {
+    'app-text-field': AppTextField
+  },
   data () {
     return {
       rules: {
@@ -36,7 +40,7 @@ export default {
         // eslint-disable-next-line
         password: value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,60}$/g.test(value) ||
           'Must have at least one of each of the folowing: lowercase letter, uppercase letter, number and symbol. Must be between 6-30 characters',
-        agreement: value => !!value || 'Required' 
+        agreement: value => !!value || 'Required'
       },
       firstName: '',
       lastName: '',
@@ -89,7 +93,7 @@ export default {
       // eslint-disable-next-line
       const isPasswordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,60}$/g.test(this.password);
 
-      return isEmailValid && isPasswordValid && this.termsAndConditions; 
+      return isEmailValid && isPasswordValid && this.termsAndConditions;
     }
   }
 }

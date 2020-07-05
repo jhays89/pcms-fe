@@ -2,8 +2,8 @@
   <div class="px-8 py-4 flex-grow-1 text-left">
     <h2>Reset Password</h2>
     <p>Please enter your new password</p>
-    <v-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-4"/>
-    <v-text-field v-model="confirmedPassword" outlined dense label="Confirm Password" type="password" :rules="[rules.password, rules.required]" class="mb-4"/>
+    <app-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.password, rules.required]" class="mb-4"/>
+    <app-text-field v-model="confirmedPassword" outlined dense label="Confirm Password" type="password" :rules="[rules.password, rules.required]" class="mb-4"/>
     <v-row no-gutters class="justify-space-between">
       <v-btn @click="setMode('login')" outlined class="accent--text">Back to login</v-btn>
       <v-btn class="accent" @click="resetPassword" :disabled="!isValid" :loading="isLoading">Reset Password</v-btn>
@@ -13,6 +13,7 @@
 
 <script>
 import alerts from '@/utils/alerts';
+const AppTextField = () => import('@/components/shared/app-text-field');
 
 export default {
   props: {
@@ -24,6 +25,10 @@ export default {
       type: String,
       default: ''
     }
+  },
+
+  components: {
+    'app-text-field': AppTextField
   },
 
   data() {

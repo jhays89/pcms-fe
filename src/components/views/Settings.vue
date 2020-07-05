@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Settings</h1>
+    <h1>Profile</h1>
     <v-row class="align-stretch">
       <v-col cols="12" sm="12">
         <v-card class="pa-4">

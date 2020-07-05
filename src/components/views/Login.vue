@@ -73,7 +73,7 @@ export default {
   },
 
   methods: {
-    initialize() { // START HERE - capture email, token and mode
+    initialize() {
       if(this.$route.query.mode) {
         this.setMode(this.$route.query.mode);
       }
