@@ -6,7 +6,7 @@ import App from './App';
 import { store } from './store/store.js';
 import { router } from './router';
 import { api } from './api'
-    
+
 require('lodash/core');
 
 Vue.prototype.$http = api;

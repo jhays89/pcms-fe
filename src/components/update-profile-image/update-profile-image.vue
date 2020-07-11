@@ -9,27 +9,41 @@
       />
     </v-col>
     <v-col class="flex-grow-0">
-      <v-btn class="accent mb-4">Change Avatar</v-btn> <!-- START HERE play with https://www.npmjs.com/package/vue-image-upload-resize-->
-      <v-btn class="accent">Use Initials</v-btn>
+      <v-btn @click="openProfileImageWidget" class="accent mb-4">Change Avatar</v-btn>
+      <v-btn>Reset Image</v-btn>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { EventBus } from '../../event-bus';
 const ProfileImage = () => import('@/components/profile-image/profile-image');
 
 export default {
   name: 'UpdateProfileImage',
+
   components: {
     'profile-image': ProfileImage
   },
+
   data() {
     return {
       url: '',
       firstName: '',
       lastName: '',
-      size: 100
+      size: 100,
+      imgSrc: ''
     };
+  },
+
+  methods: {
+    openProfileImageWidget() {
+      const widget = {
+        name: 'profile-image-widget',
+      };
+
+      EventBus.$emit('open-side-widget', widget);
+    }
   }
 }
 </script>
