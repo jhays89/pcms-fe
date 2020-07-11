@@ -8,7 +8,7 @@
       :height="height"
       :accept="'image/*'"
       :zoom-speed="80"
-      :placeholder="'Choose Image'"
+      :placeholder="'Choose Avatar'"
       :placeholder-font-size="14"
       prevent-white-space
       @image-remove="remove"/>
