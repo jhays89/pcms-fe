@@ -61,7 +61,7 @@ export default {
   position: relative;
   height: 60px;
   border-bottom: 2px solid #777;
-  background-color: #444;
+  background-color: #7367f0;
 }
 
 .side-widget .header .close-btn {
@@ -70,6 +70,7 @@ export default {
   right: 10px;
   top: 5px;
   font-size: 40px;
+  line-height: 1em;
   color: #fff;
 }
 

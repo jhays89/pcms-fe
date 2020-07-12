@@ -14,8 +14,8 @@
 </template>
 
 <script>
-const ImageCropper = () => import('@/components/update-profile-image/image-cropper');
 import { EventBus } from '../../event-bus';
+const ImageCropper = () => import('@/components/update-profile-image/image-cropper');
 
 export default {
   name: 'profile-image-widget',
@@ -44,13 +44,8 @@ export default {
 
     },
 
-    save(result) {
-      const payload = {
-        url: result.url,
-        name: result.name
-      }
-      // post payload
-      // set url from response
+    save(base64Encoded) {
+      console.log('succes' + base64Encoded);
     },
   }
 }
