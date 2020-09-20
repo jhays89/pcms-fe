@@ -1,17 +1,25 @@
 <template>
   <div>
-    <h2>Profile</h2>
-    <v-text-field @input="updateProfile('firstName', $event)" :value="profile.data.firstName" label="First name" type="text" />
-    <v-text-field @input="updateProfile('lastName', $event)" :value="profile.data.lastName" label="Last name" type="text" />
-    <v-text-field @input="updateProfile('email', $event)" :value="profile.data.email" label="Email" type="email" />
+    <h3>General</h3>
+    <update-profile-image class="mb-6" />
+    <app-text-field @input="updateProfile('firstName', $event)" :value="profile.data.firstName" label="First name" type="text" />
+    <app-text-field @input="updateProfile('lastName', $event)" :value="profile.data.lastName" label="Last name" type="text" />
+    <app-text-field @input="updateProfile('email', $event)" :value="profile.data.email" label="Email" type="email" />
     <v-btn @click="save" :disabled="loading || profile.hasChanges" :loading="loading">Save Profile</v-btn>
   </div>
 </template>
 
 <script>
 import alerts from '@/utils/alerts';
+const AppTextField = () => import('@/components/shared/app-text-field');
+const UpdateProfileImage = () => import('@/components/update-profile-image/update-profile-image');
+
 export default {
   name: 'Profile',
+  components: {
+    'app-text-field': AppTextField,
+    'update-profile-image': UpdateProfileImage
+  },
   data() {
     return {
       loading: false
@@ -57,7 +65,7 @@ export default {
           value: this.profile.data.email
         }
       ];
-    }    
+    }
   },
   mounted() {
     this.$store.commit('setProfile');

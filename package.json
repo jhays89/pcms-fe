@@ -8,7 +8,9 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "launch-local-api": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/launch-local-api.ps1",
+    "refresh-db": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/refresh-db.ps1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
@@ -17,6 +19,7 @@
     "lodash": "^4.17.15",
     "sweetalert2": "^9.7.1",
     "vue": "^2.5.2",
+    "vue-croppa": "^1.3.8",
     "vue-router": "^3.0.7",
     "vuetify": "^2.2.11",
     "vuex": "^3.1.1"

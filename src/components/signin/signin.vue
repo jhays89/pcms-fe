@@ -2,8 +2,8 @@
   <div class="px-8 py-4 flex-grow-1 text-left">
     <h2>Login</h2>
     <p class="mb-6">Welcome back, please login to your account</p>
-    <v-text-field v-model="email" outlined dense label="Email" type="email" :rules="[rules.required]" />
-    <v-text-field v-model="password" outlined dense label="Password" type="password" :rules="[rules.required]" />
+    <app-text-field v-model="email" label="Email" type="email" :rules="[rules.required]" />
+    <app-text-field v-model="password" label="Password" type="password" :rules="[rules.required]" />
     <v-row no-gutters class="mb-4">
       <v-col class="text-right pa-0">
         <v-btn @click="setMode('forgot-password')" text class="accent--text">Forgot Password</v-btn>
@@ -18,9 +18,13 @@
 
 <script>
 import alerts from '@/utils/alerts';
+const AppTextField = () => import('@/components/shared/app-text-field');
 
 export default {
   name: 'Signin',
+  components: {
+    'app-text-field': AppTextField
+  },
   data () {
     return {
       rules: {
@@ -38,7 +42,7 @@ export default {
 
       try {
         this.isLoading = true;
-  
+
         const response = await this.$http.POST('api/AppUsers/SignIn', this.getPayload());
         this.$store.dispatch('signIn', response.data);
         this.isLoading = false;
@@ -66,7 +70,7 @@ export default {
 
   computed: {
     isValid() {
-      return !!this.email && !!this.password; 
+      return !!this.email && !!this.password;
     }
   }
 }

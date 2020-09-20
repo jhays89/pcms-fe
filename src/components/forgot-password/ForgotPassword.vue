@@ -2,7 +2,7 @@
   <div class="px-8 py-4 flex-grow-1 text-left">
     <h2>Recover your password</h2>
     <p>Please enter your email address and we'll send you an email with instructions on how to reset your password.</p>
-    <v-text-field v-model="email" outlined dense label="Email" type="email" />
+    <app-text-field v-model="email" outlined dense label="Email" type="email" />
     <v-row no-gutters class="justify-space-between">
       <v-btn @click="setMode('login')" outlined dense class="accent--text">Back to login</v-btn>
       <v-btn class="accent" @click="recoverPassword" :disabled="!isValid" :loading="isLoading">Recover Password</v-btn>
@@ -12,8 +12,13 @@
 
 <script>
 import alerts from '@/utils/alerts';
+const AppTextField = () => import('@/components/shared/app-text-field');
 
 export default {
+  name: 'ForgotPassword',
+  components: {
+    'app-text-field': AppTextField
+  },
   data() {
     return {
       email: '',

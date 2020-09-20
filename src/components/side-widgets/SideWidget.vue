@@ -8,6 +8,7 @@
 
 <script>
 import MenuSideWidget from '../side-widgets/MenuSideWidget';
+import ProfileImageWidget from '../side-widgets/ProfileImageWidget';
 
 import { EventBus } from '../../event-bus.js';
 
@@ -15,7 +16,8 @@ export default {
     name: 'side-widget',
 
     components: {
-      'menu-side-widget': MenuSideWidget
+      'menu-side-widget': MenuSideWidget,
+      'profile-image-widget': ProfileImageWidget
     },
 
     data() {
@@ -59,7 +61,7 @@ export default {
   position: relative;
   height: 60px;
   border-bottom: 2px solid #777;
-  background-color: #444;
+  background-color: #7367f0;
 }
 
 .side-widget .header .close-btn {
@@ -68,6 +70,7 @@ export default {
   right: 10px;
   top: 5px;
   font-size: 40px;
+  line-height: 1em;
   color: #fff;
 }
 
@@ -101,11 +104,11 @@ export default {
   position: relative;
   left: 0;
   width: 400px;
-  background-color: #fff; 
+  background-color: #fff;
 }
 
 .side-widget .swipe-enter-active, .side-widget .swipe-leave-active {
-  transition: left 300ms ease-out 50ms; 
+  transition: left 300ms ease-out 50ms;
 }
 
 .side-widget .swipe-enter, .side-widget .swipe-leave-to {
