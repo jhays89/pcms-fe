@@ -2,7 +2,7 @@
   "name": "boilerplate",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "SomaComa",
+  "author": "Justin 'SomaComa' Hays",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -10,7 +10,8 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "launch-local-api": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/launch-local-api.ps1",
-    "refresh-db": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/refresh-db.ps1"
+    "refresh-db": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/refresh-db.ps1",
+    "run-email-processor": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ../pcms-be/dotnet-webApi/Scripts/run-email-processor.ps1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
